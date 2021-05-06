@@ -4,10 +4,10 @@
 %global __requires_exclude ^(%{_privatelibs})$
 
 Name:           rustc
-Version:        1.51.0
-Release:        74
+Version:        1.52.0
+Release:        75
 URL:            https://www.rust-lang.org
-Source0:        https://static.rust-lang.org/dist/rust-1.51.0-x86_64-unknown-linux-gnu.tar.gz
+Source0:        https://static.rust-lang.org/dist/rust-1.52.0-x86_64-unknown-linux-gnu.tar.gz
 Summary:        The Rust Programming Language
 License:        Apache-2.0 BSD-2-Clause BSD-3-Clause ISC MIT
 Requires:       binutils
@@ -15,8 +15,8 @@ Requires:       gcc
 Requires:       gcc-dev
 Requires:       libc6-dev
 Provides:       cargo
-Provides:       libLLVM-11-rust-%{version}-stable.so()(64bit)
-Provides:       libLLVM-11-rust-%{version}-stable.so(LLVM_11)(64bit)
+Provides:       libLLVM-12-rust-%{version}-stable.so()(64bit)
+Provides:       libLLVM-12-rust-%{version}-stable.so(LLVM_12)(64bit)
 
 %description
 Rust is a systems programming language that runs blazingly fast, prevents
