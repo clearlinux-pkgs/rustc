@@ -4,10 +4,10 @@
 %global __requires_exclude ^(%{_privatelibs})$
 
 Name:           rustc
-Version:        1.54.0
-Release:        78
+Version:        1.55.0
+Release:        79
 URL:            https://www.rust-lang.org
-Source0:        https://static.rust-lang.org/dist/rust-1.54.0-x86_64-unknown-linux-gnu.tar.gz
+Source0:        https://static.rust-lang.org/dist/rust-1.55.0-x86_64-unknown-linux-gnu.tar.gz
 Summary:        The Rust Programming Language
 License:        Apache-2.0 BSD-2-Clause BSD-3-Clause ISC MIT
 Requires:       binutils
@@ -62,7 +62,7 @@ chmod a-x %{buildroot}/usr/share/package-licenses/*/*
 /usr/bin/rustdoc
 /usr/lib64/*.so
 /usr/lib/rustlib/etc/*
-/usr/lib64/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld/rust-lld
+/usr/lib64/rustlib/x86_64-unknown-linux-gnu/bin/gcc-ld/ld
 /usr/lib64/rustlib/x86_64-unknown-linux-gnu/bin/rust-lld
 /usr/lib64/rustlib/x86_64-unknown-linux-gnu/bin/rust-llvm-dwp
 /usr/lib64/rustlib/x86_64-unknown-linux-gnu/lib/*.a
