@@ -1,0 +1,2 @@
+export RUST_BACKTRACE=1
+export RUST_COMPILER_RT_ROOT=%{builddir}/compiler-rt

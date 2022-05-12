@@ -1,0 +1,23 @@
+From 137eaf5b2e4c5e0543895548f430d5a468a37bf9 Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Thu, 12 May 2022 21:15:59 +0000
+Subject: [PATCH] Add Makefile wrapper
+
+---
+ Makefile | 4 ++++
+ 1 file changed, 4 insertions(+)
+ create mode 100644 Makefile
+
+diff --git a/Makefile b/Makefile
+new file mode 100644
+index 000000000..e17959355
+--- /dev/null
++++ b/Makefile
+@@ -0,0 +1,4 @@
++all:
++
++install:
++	python x.py install --config config.toml
+-- 
+2.33.0
+

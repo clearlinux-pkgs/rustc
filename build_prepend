@@ -1,0 +1,41 @@
+# Remove .git as the build system will try
+# and sync external submodules otherwise
+rm -fr .git
+cat > config.toml <<END
+changelog-seen = 2
+profile = "user"
+[llvm]
+link-shared = true
+[build]
+target = [
+  "x86_64-unknown-linux-gnu",
+]
+cargo = "/usr/bin/cargo"
+rustc = "/usr/bin/rustc"
+rustfmt = "/usr/bin/rustfmt"
+locked-deps = true
+vendor = true
+tools = ["cargo", "clippy", "rustfmt", "analysis", "rust-demangler"]
+sanitizers = true
+profiler = true
+docs = false
+[install]
+prefix = "/usr"
+[rust]
+debuginfo-level-std = 2
+channel = "stable"
+description = "Clear Linux %{version}-%{release}"
+rpath = false
+backtrace-on-ice = true
+remap-debuginfo = true
+jemalloc = true
+# https://github.com/rust-lang/rust/issues/54872
+codegen-units-std = 1
+# codegen-tests depend on LLVM utils (FileCheck) we don't provide
+codegen-tests = false
+
+[dist]
+compression-formats = ["gz"]
+[target.x86_64-unknown-linux-gnu]
+llvm-config = "/usr/bin/llvm-config"
+END
