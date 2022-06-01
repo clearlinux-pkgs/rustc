@@ -5,7 +5,7 @@
 
 Name:           rustc
 Version:        1.61.0
-Release:        88
+Release:        89
 URL:            https://www.rust-lang.org
 Source0:        https://static.rust-lang.org/dist/rust-1.61.0-x86_64-unknown-linux-gnu.tar.gz
 Summary:        The Rust Programming Language
