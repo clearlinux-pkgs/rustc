@@ -6,7 +6,7 @@
 #
 Name     : rustc
 Version  : 1.66.1
-Release  : 100
+Release  : 102
 URL      : https://static.rust-lang.org/dist/rustc-1.66.1-src.tar.gz
 Source0  : https://static.rust-lang.org/dist/rustc-1.66.1-src.tar.gz
 Source1  : https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.6/compiler-rt-15.0.6.src.tar.xz
@@ -16,6 +16,7 @@ Group    : Development/Tools
 License  : 0BSD Apache-2.0 BSD-2-Clause BSD-3-Clause BSD-4-Clause BSL-1.0 CC-BY-SA-4.0 CC0-1.0 GPL-2.0 GPL-3.0 HPND ICU ISC LGPL-2.1 MIT MPL-2.0 MPL-2.0-no-copyleft-exception OFL-1.1 OpenSSL Unicode-DFS-2016 Unlicense Zlib
 Requires: rustc-bin = %{version}-%{release}
 Requires: rustc-data = %{version}-%{release}
+Requires: rustc-lib = %{version}-%{release}
 Requires: rustc-libexec = %{version}-%{release}
 Requires: rustc-license = %{version}-%{release}
 Requires: rustc-man = %{version}-%{release}
@@ -23,6 +24,7 @@ Requires: binutils
 Requires: gcc
 Requires: gcc-dev
 Requires: libc6-dev
+Requires: rustc-extras-lib = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-cpan
 BuildRequires : buildreq-distutils3
@@ -100,18 +102,6 @@ Group: Data
 data components for the rustc package.
 
 
-%package dev
-Summary: dev components for the rustc package.
-Group: Development
-Requires: rustc-bin = %{version}-%{release}
-Requires: rustc-data = %{version}-%{release}
-Provides: rustc-devel = %{version}-%{release}
-Requires: rustc = %{version}-%{release}
-
-%description dev
-dev components for the rustc package.
-
-
 %package doc
 Summary: doc components for the rustc package.
 Group: Documentation
@@ -119,6 +109,25 @@ Requires: rustc-man = %{version}-%{release}
 
 %description doc
 doc components for the rustc package.
+
+
+%package extras-lib
+Summary: extras-lib components for the rustc package.
+Group: Default
+
+%description extras-lib
+extras-lib components for the rustc package.
+
+
+%package lib
+Summary: lib components for the rustc package.
+Group: Libraries
+Requires: rustc-data = %{version}-%{release}
+Requires: rustc-libexec = %{version}-%{release}
+Requires: rustc-license = %{version}-%{release}
+
+%description lib
+lib components for the rustc package.
 
 
 %package libexec
@@ -205,7 +214,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1673557358
+export SOURCE_DATE_EPOCH=1673632280
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -218,7 +227,7 @@ make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1673557358
+export SOURCE_DATE_EPOCH=1673632280
 rm -rf %{buildroot}
 ## install_prepend content
 export RUST_BACKTRACE=1
@@ -1268,60 +1277,6 @@ rm -f %{buildroot}/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 /usr/lib/rustlib/etc/rust_types.py
 /usr/lib/rustlib/rust-installer-version
 /usr/lib/rustlib/uninstall.sh
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/libaddr2line-ee35d5b9ff58b32d.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/libadler-f25bca07f6cd259c.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/liballoc-163ab7fba38f14ee.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/libcfg_if-81a0714a87be1df5.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/libcfg_if-dec9cfe9be319f8f.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/libcompiler_builtins-c9945427f1db515b.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/libcore-908786f046810821.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/libgetopts-64b4621e0043e82b.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/libgimli-f0d0d7d7ad913436.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/libhashbrown-e6add86bc7fc05ce.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/liblibc-bd6d5f82e9459b77.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/libmemchr-9da0339e0f1bd05c.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/libminiz_oxide-632e6eb0cd328eea.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/libobject-91b94a24cd2e00b9.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/libpanic_abort-8f62024bd84369e6.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/libpanic_unwind-dcfa6f5ae9f999d8.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/libproc_macro-6bad00baf909fc5a.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/libprofiler_builtins-b48e0adacfdd5027.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/librustc_demangle-03e3a4264831976d.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/librustc_std_workspace_alloc-51f3c2b7cbb23a39.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/librustc_std_workspace_core-60ff9212574d35d1.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/librustc_std_workspace_std-d831e11f58267c94.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/libstd-783802d0c439dffd.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/libstd_detect-e37b9efc8da517cf.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/libtest-4cc2ae2251d28d0a.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/libunicode_width-a47b4b6a52ea4ef6.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/libunwind-ab7574520bdf338f.json
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-ee35d5b9ff58b32d.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/libadler-f25bca07f6cd259c.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-163ab7fba38f14ee.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-81a0714a87be1df5.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-dec9cfe9be319f8f.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-c9945427f1db515b.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-908786f046810821.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgetopts-64b4621e0043e82b.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-f0d0d7d7ad913436.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/libhashbrown-e6add86bc7fc05ce.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-bd6d5f82e9459b77.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-9da0339e0f1bd05c.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/libminiz_oxide-632e6eb0cd328eea.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-91b94a24cd2e00b9.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_abort-8f62024bd84369e6.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-dcfa6f5ae9f999d8.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/libproc_macro-6bad00baf909fc5a.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/libprofiler_builtins-b48e0adacfdd5027.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/librustc_demangle-03e3a4264831976d.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/librustc_std_workspace_alloc-51f3c2b7cbb23a39.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/librustc_std_workspace_core-60ff9212574d35d1.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/librustc_std_workspace_std-d831e11f58267c94.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-783802d0c439dffd.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_detect-e37b9efc8da517cf.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-4cc2ae2251d28d0a.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunicode_width-a47b4b6a52ea4ef6.rlib
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-ab7574520bdf338f.rlib
 
 %files bin
 %defattr(-,root,root,-)
@@ -1341,12 +1296,6 @@ rm -f %{buildroot}/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 %defattr(-,root,root,-)
 /usr/share/zsh/site-functions/_cargo
 
-%files dev
-%defattr(-,root,root,-)
-/usr/lib64/librustc_driver-df5fb15f41daa706.so
-/usr/lib64/libstd-783802d0c439dffd.so
-/usr/lib64/libtest-4cc2ae2251d28d0a.so
-
 %files doc
 %defattr(0644,root,root,0755)
 /usr/share/doc/rust/COPYRIGHT
@@ -1357,6 +1306,17 @@ rm -f %{buildroot}/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 /usr/share/doc/rust/LICENSE-THIRD-PARTY
 /usr/share/doc/rust/README.md
 /usr/share/doc/rust/README.md.old
+
+%files extras-lib
+%defattr(-,root,root,-)
+/usr/lib64/librustc_driver-d6292701047d7141.so
+/usr/lib64/libstd-d09c3fe281c831da.so
+/usr/lib64/libtest-4153fd3ce194cecb.so
+
+%files lib
+%defattr(-,root,root,-)
+/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/*.json
+/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.rlib
 
 %files libexec
 %defattr(-,root,root,-)

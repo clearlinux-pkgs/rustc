@@ -1,8 +1,10 @@
 ld-linux-x86-64.so.2
-libLLVM.so.15
 libc.so.6
 libcrypto.so.3
 libgcc_s.so.1
 libm.so.6
+librustc_driver-d6292701047d7141.so
 libssl.so.3
+libstd-d09c3fe281c831da.so
+libtest-4153fd3ce194cecb.so
 libz.so.1

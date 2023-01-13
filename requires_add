@@ -4,3 +4,4 @@ binutils
 gcc
 gcc-dev
 libc6-dev
+rustc-extras-lib = %{version}-%{release}
