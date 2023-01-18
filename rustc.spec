@@ -6,7 +6,7 @@
 #
 Name     : rustc
 Version  : 1.66.1
-Release  : 102
+Release  : 103
 URL      : https://static.rust-lang.org/dist/rustc-1.66.1-src.tar.gz
 Source0  : https://static.rust-lang.org/dist/rustc-1.66.1-src.tar.gz
 Source1  : https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.6/compiler-rt-15.0.6.src.tar.xz
@@ -214,7 +214,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1673632280
+export SOURCE_DATE_EPOCH=1674000189
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -227,7 +227,7 @@ make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1673632280
+export SOURCE_DATE_EPOCH=1674000189
 rm -rf %{buildroot}
 ## install_prepend content
 export RUST_BACKTRACE=1
@@ -1309,9 +1309,9 @@ rm -f %{buildroot}/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 
 %files extras-lib
 %defattr(-,root,root,-)
-/usr/lib64/librustc_driver-d6292701047d7141.so
-/usr/lib64/libstd-d09c3fe281c831da.so
-/usr/lib64/libtest-4153fd3ce194cecb.so
+/usr/lib64/librustc_driver-*.so
+/usr/lib64/libstd-*.so
+/usr/lib64/libtest-*.so
 
 %files lib
 %defattr(-,root,root,-)
