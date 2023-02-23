@@ -6,7 +6,7 @@
 #
 Name     : rustc
 Version  : 1.67.1
-Release  : 105
+Release  : 106
 URL      : https://static.rust-lang.org/dist/rustc-1.67.1-src.tar.gz
 Source0  : https://static.rust-lang.org/dist/rustc-1.67.1-src.tar.gz
 Source1  : https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.7/compiler-rt-15.0.7.src.tar.xz
@@ -28,7 +28,6 @@ Requires: rustc-extras-lib = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-cpan
 BuildRequires : buildreq-distutils3
-BuildRequires : buildreq-golang
 BuildRequires : buildreq-qmake
 BuildRequires : cmake
 BuildRequires : llvm
@@ -214,7 +213,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1675991250
+export SOURCE_DATE_EPOCH=1677184559
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -227,7 +226,7 @@ make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1675991250
+export SOURCE_DATE_EPOCH=1677184559
 rm -rf %{buildroot}
 ## install_prepend content
 export RUST_BACKTRACE=1
