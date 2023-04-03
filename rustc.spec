@@ -7,7 +7,7 @@
 #
 Name     : rustc
 Version  : 1.68.2
-Release  : 107
+Release  : 108
 URL      : https://static.rust-lang.org/dist/rustc-1.68.2-src.tar.gz
 Source0  : https://static.rust-lang.org/dist/rustc-1.68.2-src.tar.gz
 Source1  : https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.7/compiler-rt-15.0.7.src.tar.xz
