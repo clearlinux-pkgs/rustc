@@ -7,11 +7,10 @@
 #
 Name     : rustc
 Version  : 1.68.2
-Release  : 109
+Release  : 110
 URL      : https://static.rust-lang.org/dist/rustc-1.68.2-src.tar.gz
 Source0  : https://static.rust-lang.org/dist/rustc-1.68.2-src.tar.gz
-Source1  : https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.7/compiler-rt-15.0.7.src.tar.xz
-Source2  : https://static.rust-lang.org/dist/rustc-1.68.2-src.tar.gz.asc
+Source1  : https://static.rust-lang.org/dist/rustc-1.68.2-src.tar.gz.asc
 Summary  : The experimental SPDY protocol version 2 and 3 implementation in C
 Group    : Development/Tools
 License  : 0BSD Apache-2.0 BSD-2-Clause BSD-3-Clause BSD-4-Clause BSD-4-Clause-UC BSL-1.0 CC-BY-SA-4.0 CC0-1.0 GPL-2.0 GPL-3.0 HPND ICU ISC LGPL-2.1 MIT MPL-2.0 MPL-2.0-no-copyleft-exception OFL-1.1 OpenSSL Unicode-DFS-2016 Unlicense Zlib
@@ -32,6 +31,7 @@ BuildRequires : llvm
 BuildRequires : llvm-staticdev
 BuildRequires : ninja
 BuildRequires : pkgconfig(openssl)
+BuildRequires : python3-dev
 BuildRequires : rustc
 BuildRequires : zlib-dev
 # Suppress stripping binaries
@@ -68,6 +68,19 @@ Group: Data
 
 %description data
 data components for the rustc package.
+
+
+%package dev
+Summary: dev components for the rustc package.
+Group: Development
+Requires: rustc-lib = %{version}-%{release}
+Requires: rustc-bin = %{version}-%{release}
+Requires: rustc-data = %{version}-%{release}
+Provides: rustc-devel = %{version}-%{release}
+Requires: rustc = %{version}-%{release}
+
+%description dev
+dev components for the rustc package.
 
 
 %package doc
@@ -125,11 +138,7 @@ man components for the rustc package.
 
 %prep
 %setup -q -n rustc-1.68.2-src
-cd %{_builddir}
-tar xf %{_sourcedir}/compiler-rt-15.0.7.src.tar.xz
 cd %{_builddir}/rustc-1.68.2-src
-mkdir -p ./compiler-rt
-cp -r %{_builddir}/compiler-rt-15.0.7.src/* %{_builddir}/rustc-1.68.2-src/./compiler-rt
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -154,7 +163,7 @@ rustc = "/usr/bin/rustc"
 rustfmt = "/usr/bin/rustfmt"
 locked-deps = true
 vendor = true
-tools = ["cargo", "clippy", "rustfmt", "analysis", "rust-demangler"]
+tools = ["cargo", "clippy", "rustfmt", "rust-demangler"]
 sanitizers = true
 profiler = true
 docs = false
@@ -176,14 +185,13 @@ codegen-tests = false
 [dist]
 compression-formats = ["gz"]
 [target.x86_64-unknown-linux-gnu]
-llvm-config = "/usr/bin/llvm-config"
 END
 ## build_prepend end
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680533284
+export SOURCE_DATE_EPOCH=1680738304
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -196,14 +204,13 @@ make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1680533284
+export SOURCE_DATE_EPOCH=1680738304
 rm -rf %{buildroot}
 ## install_prepend content
 export RUST_BACKTRACE=1
 export RUST_COMPILER_RT_ROOT=%{builddir}/compiler-rt
 ## install_prepend end
 mkdir -p %{buildroot}/usr/share/package-licenses/rustc
-cp %{_builddir}/compiler-rt-15.0.7.src/LICENSE.TXT %{buildroot}/usr/share/package-licenses/rustc/f4359b9da55a3b9e4d9513eb79cacf125fb49e7b || :
 cp %{_builddir}/rustc-%{version}-src/COPYRIGHT %{buildroot}/usr/share/package-licenses/rustc/287b44e7f4d3ad03159960a9ff61dc6705c261f2 || :
 cp %{_builddir}/rustc-%{version}-src/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
@@ -1373,6 +1380,10 @@ rm -f %{buildroot}/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 %defattr(-,root,root,-)
 /usr/share/zsh/site-functions/_cargo
 
+%files dev
+%defattr(-,root,root,-)
+/usr/lib64/libLLVM-15-rust-1.68.2-stable.so
+
 %files doc
 %defattr(0644,root,root,0755)
 /usr/share/doc/rust/COPYRIGHT
@@ -1392,7 +1403,6 @@ rm -f %{buildroot}/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib/rustlib/x86_64-unknown-linux-gnu/analysis/*.json
 /usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.rlib
 
 %files libexec
