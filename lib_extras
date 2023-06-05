@@ -1,6 +1,3 @@
 /usr/lib64/librustc_driver-*.so
 /usr/lib64/libstd-*.so
 /usr/lib64/libtest-*.so
-/V3/usr/lib64/librustc_driver-*.so
-/V3/usr/lib64/libstd-*.so
-/V3/usr/lib64/libtest-*.so

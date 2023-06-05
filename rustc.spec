@@ -7,7 +7,7 @@
 #
 Name     : rustc
 Version  : 1.70.0
-Release  : 113
+Release  : 114
 URL      : https://static.rust-lang.org/dist/rustc-1.70.0-src.tar.gz
 Source0  : https://static.rust-lang.org/dist/rustc-1.70.0-src.tar.gz
 Source1  : https://static.rust-lang.org/dist/rustc-1.70.0-src.tar.gz.asc
@@ -138,10 +138,10 @@ man components for the rustc package.
 %prep
 %setup -q -n rustc-1.70.0-src
 cd %{_builddir}/rustc-1.70.0-src
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
+%patch -P 1 -p1
+%patch -P 2 -p1
+%patch -P 3 -p1
+%patch -P 4 -p1
 pushd ..
 cp -a rustc-1.70.0-src buildavx2
 popd
@@ -193,7 +193,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1685721106
+export SOURCE_DATE_EPOCH=1685987926
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -256,7 +256,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1685721106
+export SOURCE_DATE_EPOCH=1685987926
 rm -rf %{buildroot}
 ## install_prepend content
 export RUST_BACKTRACE=1
@@ -1491,8 +1491,11 @@ rm -f %{buildroot}*/usr/lib/rustlib/manifest-rustfmt-preview
 rm -f %{buildroot}*/usr/lib/rustlib/manifest-rustc
 ## install_append content
 mkdir -p %{buildroot}/usr/lib64/
+mkdir -p %{buildroot}-v3/usr/lib64/
 mv %{buildroot}/usr/lib/*.so %{buildroot}/usr/lib64/
+mv %{buildroot}-v3/usr/lib/*.so %{buildroot}-v3/usr/lib64/
 rm -f %{buildroot}/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
+rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 ## install_append end
 /usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
@@ -1535,10 +1538,7 @@ rm -f %{buildroot}/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib/libLLVM-16-rust-1.70.0-stable.so
-/V3/usr/lib/librustc_driver-3c1b70d050d187f4.so
-/V3/usr/lib/libstd-01d2afcfb77174ba.so
-/V3/usr/lib/libtest-d50da3a60688e279.so
+/V3/usr/lib64/libLLVM-16-rust-1.70.0-stable.so
 /usr/lib64/libLLVM-16-rust-1.70.0-stable.so
 
 %files doc
@@ -1554,14 +1554,15 @@ rm -f %{buildroot}/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 
 %files extras-lib
 %defattr(-,root,root,-)
+/V3/usr/lib64/librustc_driver-*.so
+/V3/usr/lib64/libstd-*.so
+/V3/usr/lib64/libtest-*.so
 /usr/lib64/librustc_driver-*.so
 /usr/lib64/libstd-*.so
 /usr/lib64/libtest-*.so
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-01d2afcfb77174ba.so
-/V3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/libtest-d50da3a60688e279.so
 /usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.rlib
 
 %files libexec
