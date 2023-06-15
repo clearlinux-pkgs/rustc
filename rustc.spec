@@ -7,7 +7,7 @@
 #
 Name     : rustc
 Version  : 1.70.0
-Release  : 114
+Release  : 115
 URL      : https://static.rust-lang.org/dist/rustc-1.70.0-src.tar.gz
 Source0  : https://static.rust-lang.org/dist/rustc-1.70.0-src.tar.gz
 Source1  : https://static.rust-lang.org/dist/rustc-1.70.0-src.tar.gz.asc
@@ -165,7 +165,7 @@ rustc = "/usr/bin/rustc"
 rustfmt = "/usr/bin/rustfmt"
 locked-deps = true
 vendor = true
-tools = ["cargo", "clippy", "rustfmt", "rust-demangler"]
+tools = ["cargo", "clippy", "rustdoc", "rustfmt", "rust-demangler"]
 sanitizers = true
 profiler = true
 docs = false
@@ -193,7 +193,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1685987926
+export SOURCE_DATE_EPOCH=1686860098
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -223,7 +223,7 @@ rustc = "/usr/bin/rustc"
 rustfmt = "/usr/bin/rustfmt"
 locked-deps = true
 vendor = true
-tools = ["cargo", "clippy", "rustfmt", "rust-demangler"]
+tools = ["cargo", "clippy", "rustdoc", "rustfmt", "rust-demangler"]
 sanitizers = true
 profiler = true
 docs = false
@@ -256,7 +256,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1685987926
+export SOURCE_DATE_EPOCH=1686860098
 rm -rf %{buildroot}
 ## install_prepend content
 export RUST_BACKTRACE=1
@@ -1520,6 +1520,7 @@ rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 /V3/usr/bin/clippy-driver
 /V3/usr/bin/rust-demangler
 /V3/usr/bin/rustc
+/V3/usr/bin/rustdoc
 /V3/usr/bin/rustfmt
 /usr/bin/cargo
 /usr/bin/cargo-clippy
@@ -1530,6 +1531,7 @@ rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 /usr/bin/rust-gdbgui
 /usr/bin/rust-lldb
 /usr/bin/rustc
+/usr/bin/rustdoc
 /usr/bin/rustfmt
 
 %files data
