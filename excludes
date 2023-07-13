@@ -8,3 +8,4 @@
 /usr/lib/rustlib/manifest-rust-std-x86_64-unknown-linux-gnu
 /usr/lib/rustlib/manifest-rustfmt-preview
 /usr/lib/rustlib/manifest-rustc
+/usr/src/etc/bash_completion.d/cargo
