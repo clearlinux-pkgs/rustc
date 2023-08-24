@@ -5,6 +5,8 @@ mozjs102
 mozjs91
 pypi-cryptography
 pypi-maturin
+pypi-rpds_py
+pypi-safetensors
 pypi-tokenizers
 ripgrep
 rustc

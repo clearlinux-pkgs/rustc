@@ -6,12 +6,12 @@
 # Source0 file verified with key 0x85AB96E6FA1BE5FE (rust-key@rust-lang.org)
 #
 Name     : rustc
-Version  : 1.71.0
-Release  : 116
-URL      : https://static.rust-lang.org/dist/rustc-1.71.0-src.tar.gz
-Source0  : https://static.rust-lang.org/dist/rustc-1.71.0-src.tar.gz
-Source1  : https://static.rust-lang.org/dist/rustc-1.71.0-src.tar.gz.asc
-Summary  : The experimental SPDY protocol version 2 and 3 implementation in C
+Version  : 1.72.0
+Release  : 117
+URL      : https://static.rust-lang.org/dist/rustc-1.72.0-src.tar.gz
+Source0  : https://static.rust-lang.org/dist/rustc-1.72.0-src.tar.gz
+Source1  : https://static.rust-lang.org/dist/rustc-1.72.0-src.tar.gz.asc
+Summary  : unknown
 Group    : Development/Tools
 License  : 0BSD Apache-2.0 BSD-2-Clause BSD-3-Clause BSD-4-Clause BSD-4-Clause-UC BSL-1.0 CC-BY-SA-4.0 CC0-1.0 GPL-2.0 GPL-3.0 HPND ICU ISC LGPL-2.1 MIT MPL-2.0 MPL-2.0-no-copyleft-exception OFL-1.1 OpenSSL Unicode-DFS-2016 Unlicense Zlib
 Requires: rustc-bin = %{version}-%{release}
@@ -136,14 +136,14 @@ man components for the rustc package.
 
 
 %prep
-%setup -q -n rustc-1.71.0-src
-cd %{_builddir}/rustc-1.71.0-src
+%setup -q -n rustc-1.72.0-src
+cd %{_builddir}/rustc-1.72.0-src
 %patch -P 1 -p1
 %patch -P 2 -p1
 %patch -P 3 -p1
 %patch -P 4 -p1
 pushd ..
-cp -a rustc-1.71.0-src buildavx2
+cp -a rustc-1.72.0-src buildavx2
 popd
 
 %build
@@ -193,7 +193,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1689285177
+export SOURCE_DATE_EPOCH=1692907137
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -256,7 +256,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1689285177
+export SOURCE_DATE_EPOCH=1692907137
 rm -rf %{buildroot}
 ## install_prepend content
 export RUST_BACKTRACE=1
@@ -282,7 +282,6 @@ cp %{_builddir}/rustc-%{version}-src/library/stdarch/crates/core_arch/LICENSE-AP
 cp %{_builddir}/rustc-%{version}-src/library/stdarch/crates/core_arch/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ffd39bf8911169ff5f91848c01b591362b95f04d || :
 cp %{_builddir}/rustc-%{version}-src/library/stdarch/crates/intrinsic-test/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/library/stdarch/crates/intrinsic-test/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/7a2d4232b31d885fed267033b8a562c961af614a || :
-cp %{_builddir}/rustc-%{version}-src/library/stdarch/crates/intrinsic-test/acle/tools/LICENSE %{buildroot}/usr/share/package-licenses/rustc/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
 cp %{_builddir}/rustc-%{version}-src/library/stdarch/crates/std_detect/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/library/stdarch/crates/std_detect/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ffd39bf8911169ff5f91848c01b591362b95f04d || :
 cp %{_builddir}/rustc-%{version}-src/src/doc/book/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/851f9e636e2ce515ce8dc01c0d86ebf808aa44e0 || :
@@ -340,50 +339,55 @@ cp %{_builddir}/rustc-%{version}-src/src/tools/rust-analyzer/LICENSE-MIT %{build
 cp %{_builddir}/rustc-%{version}-src/src/tools/rust-analyzer/editors/code/LICENSE %{buildroot}/usr/share/package-licenses/rustc/e09aa10aa125186a25b43e8a27ba3e695ae6a483 || :
 cp %{_builddir}/rustc-%{version}-src/src/tools/rustfmt/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/69afe0de2e135b3d331c30a50f6b283525834a71 || :
 cp %{_builddir}/rustc-%{version}-src/src/tools/rustfmt/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/1d340a67e042bbd5644b5c4be4c79c660f4da8b7 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/addr2line-0.18.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/addr2line-0.18.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9b76a43221967e5c55c4183406e1ebc7417da61d || :
+cp %{_builddir}/rustc-%{version}-src/vendor/addr2line-0.19.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/addr2line-0.19.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9b76a43221967e5c55c4183406e1ebc7417da61d || :
+cp %{_builddir}/rustc-%{version}-src/vendor/addr2line-0.20.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/addr2line-0.20.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9b76a43221967e5c55c4183406e1ebc7417da61d || :
 cp %{_builddir}/rustc-%{version}-src/vendor/addr2line/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/addr2line/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9b76a43221967e5c55c4183406e1ebc7417da61d || :
 cp %{_builddir}/rustc-%{version}-src/vendor/adler/LICENSE-0BSD %{buildroot}/usr/share/package-licenses/rustc/3aedaafe8ea8fce424d1df3be32d1b8816944e0e || :
 cp %{_builddir}/rustc-%{version}-src/vendor/adler/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/1d47c63586fe3be7f228cff1ab0c029b53741875 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/adler/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/ahash-0.7.4/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/ahash-0.7.4/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/c9c1c33aee599ebfdfb0bc2aed9ea082d9e3173a || :
-cp %{_builddir}/rustc-%{version}-src/vendor/ahash-0.8.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/ahash-0.8.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/2646b6d2453275031022ab245a3a6d5da4ba80b2 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/ahash-0.7.6/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/ahash-0.7.6/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/c9c1c33aee599ebfdfb0bc2aed9ea082d9e3173a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/ahash/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/ahash/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/2646b6d2453275031022ab245a3a6d5da4ba80b2 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/aho-corasick-0.7.18/COPYING %{buildroot}/usr/share/package-licenses/rustc/dd445710e6e4caccc4f8a587a130eaeebe83f6f6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/aho-corasick-0.7.18/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/4c8990add9180fc59efa5b0d8faf643c9709501e || :
 cp %{_builddir}/rustc-%{version}-src/vendor/aho-corasick-0.7.18/UNLICENSE %{buildroot}/usr/share/package-licenses/rustc/ff007ce11f3ff7964f1a5b04202c4e95b5c82c85 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/aho-corasick-0.7.20/COPYING %{buildroot}/usr/share/package-licenses/rustc/dd445710e6e4caccc4f8a587a130eaeebe83f6f6 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/aho-corasick-0.7.20/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/4c8990add9180fc59efa5b0d8faf643c9709501e || :
+cp %{_builddir}/rustc-%{version}-src/vendor/aho-corasick-0.7.20/UNLICENSE %{buildroot}/usr/share/package-licenses/rustc/ff007ce11f3ff7964f1a5b04202c4e95b5c82c85 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/aho-corasick/COPYING %{buildroot}/usr/share/package-licenses/rustc/dd445710e6e4caccc4f8a587a130eaeebe83f6f6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/aho-corasick/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/4c8990add9180fc59efa5b0d8faf643c9709501e || :
 cp %{_builddir}/rustc-%{version}-src/vendor/aho-corasick/UNLICENSE %{buildroot}/usr/share/package-licenses/rustc/ff007ce11f3ff7964f1a5b04202c4e95b5c82c85 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/always-assert/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/always-assert/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/ammonia/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/ammonia/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/d613c3b2367acb865a03150ed36c5610f123e378 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/android-tzdata/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/db8bf4070b91bbabe0f14d1c15f0be86793fab6a || :
+cp %{_builddir}/rustc-%{version}-src/vendor/android-tzdata/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/2c87153926f8a458cffc9a435e15571ba721c2fa || :
 cp %{_builddir}/rustc-%{version}-src/vendor/android_system_properties/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/a8ab3e6caa5e7af0ec9235d5db800ace830c0a38 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/android_system_properties/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ac0bf7546a377351144d930c5e31eff058fe4e8f || :
 cp %{_builddir}/rustc-%{version}-src/vendor/annotate-snippets/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
 cp %{_builddir}/rustc-%{version}-src/vendor/annotate-snippets/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/fdfbda78ad0b863317a64dddfe6491935fc18ffc || :
-cp %{_builddir}/rustc-%{version}-src/vendor/ansi_term/LICENCE %{buildroot}/usr/share/package-licenses/rustc/7293920aac55f4d275cef83ba10d706585622a53 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/anstream/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/anstream/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/4dbe8833d0189c691b308c3dd40fab84ef2e9630 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/anstyle-0.3.5/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/anstyle-0.3.5/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/f911b0506e6ba6a56b4edac717b461799f380ef0 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/anstyle-1.0.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/anstyle-1.0.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/f911b0506e6ba6a56b4edac717b461799f380ef0 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/anstyle-parse-0.2.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/92170cdc034b2ff819323ff670d3b7266c8bffcd || :
+cp %{_builddir}/rustc-%{version}-src/vendor/anstyle-parse-0.2.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/64a8c11fd0f3068e743bfc681bcbef4f50a6b779 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/anstyle-parse/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/92170cdc034b2ff819323ff670d3b7266c8bffcd || :
 cp %{_builddir}/rustc-%{version}-src/vendor/anstyle-parse/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/64a8c11fd0f3068e743bfc681bcbef4f50a6b779 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/anstyle-query/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/anstyle-query/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/4dbe8833d0189c691b308c3dd40fab84ef2e9630 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/anstyle-wincon/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/anstyle-wincon/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/33dbd2d99ad231460bbb01812a52c85e577bd9ba || :
 cp %{_builddir}/rustc-%{version}-src/vendor/anstyle/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/anstyle/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/f911b0506e6ba6a56b4edac717b461799f380ef0 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/anyhow-1.0.65/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/anyhow-1.0.65/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/anyhow-1.0.66/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/anyhow-1.0.66/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/anyhow-1.0.68/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/anyhow-1.0.68/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/anyhow-1.0.70/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
+cp %{_builddir}/rustc-%{version}-src/vendor/anyhow-1.0.70/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/anyhow/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/anyhow/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/ar_archive_writer/LICENSE.txt %{buildroot}/usr/share/package-licenses/rustc/483d1c97dc79ef8741eae507897ca39cfe19da36 || :
@@ -394,10 +398,10 @@ cp %{_builddir}/rustc-%{version}-src/vendor/arc-swap/LICENSE-MIT %{buildroot}/us
 cp %{_builddir}/rustc-%{version}-src/vendor/array_tool/MIT-LICENSE %{buildroot}/usr/share/package-licenses/rustc/88f07dbef13f8f0371c411711cdf9c00ffde23d5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/arrayvec-0.5.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/arrayvec-0.5.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/39c13e52bbc0cee5549d36f3829693726fb50a8b || :
-cp %{_builddir}/rustc-%{version}-src/vendor/arrayvec-0.7.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/arrayvec-0.7.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/39c13e52bbc0cee5549d36f3829693726fb50a8b || :
+cp %{_builddir}/rustc-%{version}-src/vendor/arrayvec-0.7.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/arrayvec-0.7.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/39c13e52bbc0cee5549d36f3829693726fb50a8b || :
 cp %{_builddir}/rustc-%{version}-src/vendor/arrayvec/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/arrayvec/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/39c13e52bbc0cee5549d36f3829693726fb50a8b || :
+cp %{_builddir}/rustc-%{version}-src/vendor/arrayvec/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/1ed710abaa8e6f1039a65ee19db6b19804514a75 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/askama/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/9a7f1452f416deeed2010a42830d05b856c17660 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/askama/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/a85d18aa7f519b0704016252f50e3286d106c67c || :
 cp %{_builddir}/rustc-%{version}-src/vendor/askama_derive/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/9a7f1452f416deeed2010a42830d05b856c17660 || :
@@ -407,6 +411,8 @@ cp %{_builddir}/rustc-%{version}-src/vendor/askama_escape/LICENSE-MIT %{buildroo
 cp %{_builddir}/rustc-%{version}-src/vendor/atty/LICENSE %{buildroot}/usr/share/package-licenses/rustc/3acad00f27f89710cd66d3f5528aed5046ac28d9 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/autocfg/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/autocfg/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/e6d32072ef5f584a805b429ecbd4eec428316dde || :
+cp %{_builddir}/rustc-%{version}-src/vendor/backtrace-0.3.67/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/backtrace-0.3.67/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/backtrace/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/backtrace/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/base16ct/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/422e6fd980775f9997ed6735c28a14ad20c222e8 || :
@@ -424,6 +430,10 @@ cp %{_builddir}/rustc-%{version}-src/vendor/bit-vec/LICENSE-APACHE %{buildroot}/
 cp %{_builddir}/rustc-%{version}-src/vendor/bit-vec/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/60c3522081bf15d7ac1d4c5a63de425ef253e87a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/bitflags-1.3.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/bitflags-1.3.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9f3c36d2b7d381d9cf382a00166f3fbd06783636 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/bitflags-2.1.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/bitflags-2.1.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9f3c36d2b7d381d9cf382a00166f3fbd06783636 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/bitflags-2.3.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/bitflags-2.3.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9f3c36d2b7d381d9cf382a00166f3fbd06783636 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/bitflags/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/bitflags/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9f3c36d2b7d381d9cf382a00166f3fbd06783636 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/bitmaps/LICENCE.md %{buildroot}/usr/share/package-licenses/rustc/7c1853ff34974a6b19247c039a0f60e06438f877 || :
@@ -435,9 +445,6 @@ cp %{_builddir}/rustc-%{version}-src/vendor/bstr-0.2.17/COPYING %{buildroot}/usr
 cp %{_builddir}/rustc-%{version}-src/vendor/bstr-0.2.17/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/bstr-0.2.17/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/99b5dc64e06bf0354ef3baac0ea25c929e4e3a9a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/bstr-0.2.17/src/unicode/data/LICENSE-UNICODE %{buildroot}/usr/share/package-licenses/rustc/c4f8de16c29dc84a94d610b716fb1c9c7f143582 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/bstr-1.3.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/bstr-1.3.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/99b5dc64e06bf0354ef3baac0ea25c929e4e3a9a || :
-cp %{_builddir}/rustc-%{version}-src/vendor/bstr-1.3.0/src/unicode/data/LICENSE-UNICODE %{buildroot}/usr/share/package-licenses/rustc/c4f8de16c29dc84a94d610b716fb1c9c7f143582 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/bstr/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/bstr/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/99b5dc64e06bf0354ef3baac0ea25c929e4e3a9a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/bstr/src/unicode/data/LICENSE-UNICODE %{buildroot}/usr/share/package-licenses/rustc/c4f8de16c29dc84a94d610b716fb1c9c7f143582 || :
@@ -445,8 +452,6 @@ cp %{_builddir}/rustc-%{version}-src/vendor/btoi/LICENSE-APACHE %{buildroot}/usr
 cp %{_builddir}/rustc-%{version}-src/vendor/btoi/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ac29c63199ae2d4148f55f8c3634c73f7232e78b || :
 cp %{_builddir}/rustc-%{version}-src/vendor/bumpalo-3.11.1/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/bumpalo-3.11.1/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/0a1e89ac22450cb0311baa2613bc21b7131b321f || :
-cp %{_builddir}/rustc-%{version}-src/vendor/bumpalo-3.12.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/bumpalo-3.12.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/0a1e89ac22450cb0311baa2613bc21b7131b321f || :
 cp %{_builddir}/rustc-%{version}-src/vendor/bumpalo/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/bumpalo/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/0a1e89ac22450cb0311baa2613bc21b7131b321f || :
 cp %{_builddir}/rustc-%{version}-src/vendor/bytecount/LICENSE.Apache2 %{buildroot}/usr/share/package-licenses/rustc/92170cdc034b2ff819323ff670d3b7266c8bffcd || :
@@ -454,55 +459,46 @@ cp %{_builddir}/rustc-%{version}-src/vendor/bytecount/LICENSE.MIT %{buildroot}/u
 cp %{_builddir}/rustc-%{version}-src/vendor/byteorder/COPYING %{buildroot}/usr/share/package-licenses/rustc/dd445710e6e4caccc4f8a587a130eaeebe83f6f6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/byteorder/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/4c8990add9180fc59efa5b0d8faf643c9709501e || :
 cp %{_builddir}/rustc-%{version}-src/vendor/byteorder/UNLICENSE %{buildroot}/usr/share/package-licenses/rustc/ff007ce11f3ff7964f1a5b04202c4e95b5c82c85 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/bytes-1.0.1/LICENSE %{buildroot}/usr/share/package-licenses/rustc/2510927d07430a2092720e8f4a5287043f75e8d3 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/bytes/LICENSE %{buildroot}/usr/share/package-licenses/rustc/2510927d07430a2092720e8f4a5287043f75e8d3 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/bytesize/LICENSE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/camino-1.0.9/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/camino-1.0.9/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/camino-1.1.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/camino-1.1.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/camino/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/camino/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/cargo-platform/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/1d47c63586fe3be7f228cff1ab0c029b53741875 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/cargo-platform/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/cargo_metadata-0.14.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/cargo_metadata-0.14.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/cargo_metadata-0.15.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/cargo_metadata/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/cast/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/cast/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/e5c5af8ddef19fbd109a06b28365d6ab491c5a38 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/cc-1.0.73/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/cc-1.0.73/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/cc-1.0.77/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/cc-1.0.77/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/cc-1.0.78/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/cc-1.0.78/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/cc/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/cc/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/cfg-if/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/cfg-if/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/chrono/LICENSE.txt %{buildroot}/usr/share/package-licenses/rustc/c145b1a607ecf06aed81f1d04a65c2e43dffdc63 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/clap-2.34.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/2111f90a2fa5afba10ae753c5ca31a1d8080f597 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/clap-3.2.20/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
-cp %{_builddir}/rustc-%{version}-src/vendor/clap-3.2.20/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/8fe88f09d35c6054e0a780a793833c16fb888168 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/clap-4.2.1/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
-cp %{_builddir}/rustc-%{version}-src/vendor/clap-4.2.1/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/8fe88f09d35c6054e0a780a793833c16fb888168 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/clap-4.2.4/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/clap-4.2.4/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/4dbe8833d0189c691b308c3dd40fab84ef2e9630 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/clap-4.3.3/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/clap-4.3.3/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/4dbe8833d0189c691b308c3dd40fab84ef2e9630 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/clap/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/clap/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/4dbe8833d0189c691b308c3dd40fab84ef2e9630 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/clap_builder-4.2.1/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
-cp %{_builddir}/rustc-%{version}-src/vendor/clap_builder-4.2.1/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/8fe88f09d35c6054e0a780a793833c16fb888168 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/clap_builder-4.2.4/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
+cp %{_builddir}/rustc-%{version}-src/vendor/clap_builder-4.2.4/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/8fe88f09d35c6054e0a780a793833c16fb888168 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/clap_builder-4.3.3/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
+cp %{_builddir}/rustc-%{version}-src/vendor/clap_builder-4.3.3/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/8fe88f09d35c6054e0a780a793833c16fb888168 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/clap_builder/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
 cp %{_builddir}/rustc-%{version}-src/vendor/clap_builder/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/8fe88f09d35c6054e0a780a793833c16fb888168 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/clap_complete-4.0.7/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
-cp %{_builddir}/rustc-%{version}-src/vendor/clap_complete-4.0.7/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/8fe88f09d35c6054e0a780a793833c16fb888168 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/clap_complete-4.2.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
+cp %{_builddir}/rustc-%{version}-src/vendor/clap_complete-4.2.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/8fe88f09d35c6054e0a780a793833c16fb888168 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/clap_complete/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
 cp %{_builddir}/rustc-%{version}-src/vendor/clap_complete/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/8fe88f09d35c6054e0a780a793833c16fb888168 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/clap_derive-3.2.18/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
-cp %{_builddir}/rustc-%{version}-src/vendor/clap_derive-3.2.18/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/8fe88f09d35c6054e0a780a793833c16fb888168 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/clap_derive-4.2.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
+cp %{_builddir}/rustc-%{version}-src/vendor/clap_derive-4.2.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/8fe88f09d35c6054e0a780a793833c16fb888168 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/clap_derive/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
 cp %{_builddir}/rustc-%{version}-src/vendor/clap_derive/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/8fe88f09d35c6054e0a780a793833c16fb888168 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/clap_lex-0.2.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
-cp %{_builddir}/rustc-%{version}-src/vendor/clap_lex-0.2.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/2111f90a2fa5afba10ae753c5ca31a1d8080f597 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/clap_lex-0.4.1/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
+cp %{_builddir}/rustc-%{version}-src/vendor/clap_lex-0.4.1/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/8fe88f09d35c6054e0a780a793833c16fb888168 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/clap_lex/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
 cp %{_builddir}/rustc-%{version}-src/vendor/clap_lex/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/8fe88f09d35c6054e0a780a793833c16fb888168 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/clru/LICENSE %{buildroot}/usr/share/package-licenses/rustc/0ac01a8a470c1756658ee76ced9fb4cea22209b3 || :
@@ -510,16 +506,12 @@ cp %{_builddir}/rustc-%{version}-src/vendor/cmake/LICENSE-APACHE %{buildroot}/us
 cp %{_builddir}/rustc-%{version}-src/vendor/cmake/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/color-eyre/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/b95542c0be3bd915a1e7d8df80711fce5cd0795b || :
 cp %{_builddir}/rustc-%{version}-src/vendor/color-eyre/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/a74c5e048f9ed570eb892f81ca5daf05936475b0 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/colorchoice/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/colorchoice/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/4dbe8833d0189c691b308c3dd40fab84ef2e9630 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/colored/LICENSE %{buildroot}/usr/share/package-licenses/rustc/9744cedce099f727b327cd9913a1fdc58a7f5599 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/command-group/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/command-group/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/compiler_builtins/LICENSE.txt %{buildroot}/usr/share/package-licenses/rustc/6d265726f0e5e1b09bed5eb43d9d84186b36dfd5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/compiletest_rs/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/compiletest_rs/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/2bf5cac862d5a0480b5d5bcd3a1852d68bfeee84 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/concolor-override/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/concolor-override/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/f3c8bb7bb24aeedb5f1de6ecc8f3303eecf654e7 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/concolor-query/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/concolor-query/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/f3c8bb7bb24aeedb5f1de6ecc8f3303eecf654e7 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/const-oid/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/422e6fd980775f9997ed6735c28a14ad20c222e8 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/const-oid/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/d9cbbade41968e40611db3140de155e00b8bc8d3 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/content_inspector/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
@@ -536,12 +528,15 @@ cp %{_builddir}/rustc-%{version}-src/vendor/cov-mark/LICENSE-APACHE %{buildroot}
 cp %{_builddir}/rustc-%{version}-src/vendor/cov-mark/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/cpufeatures-0.2.5/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/422e6fd980775f9997ed6735c28a14ad20c222e8 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/cpufeatures-0.2.5/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/388871ab0ab7f8ba6aaa0d444a5153f15c918cdb || :
+cp %{_builddir}/rustc-%{version}-src/vendor/cpufeatures-0.2.7/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/422e6fd980775f9997ed6735c28a14ad20c222e8 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/cpufeatures-0.2.7/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/388871ab0ab7f8ba6aaa0d444a5153f15c918cdb || :
 cp %{_builddir}/rustc-%{version}-src/vendor/cpufeatures/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/422e6fd980775f9997ed6735c28a14ad20c222e8 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/cpufeatures/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/388871ab0ab7f8ba6aaa0d444a5153f15c918cdb || :
 cp %{_builddir}/rustc-%{version}-src/vendor/cranelift-bforest/LICENSE %{buildroot}/usr/share/package-licenses/rustc/f137043e018f2024e0414a9153ea728c203ae8e5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/cranelift-codegen-meta/LICENSE %{buildroot}/usr/share/package-licenses/rustc/f137043e018f2024e0414a9153ea728c203ae8e5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/cranelift-codegen-shared/LICENSE %{buildroot}/usr/share/package-licenses/rustc/f137043e018f2024e0414a9153ea728c203ae8e5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/cranelift-codegen/LICENSE %{buildroot}/usr/share/package-licenses/rustc/f137043e018f2024e0414a9153ea728c203ae8e5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/cranelift-control/LICENSE %{buildroot}/usr/share/package-licenses/rustc/f137043e018f2024e0414a9153ea728c203ae8e5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/cranelift-entity/LICENSE %{buildroot}/usr/share/package-licenses/rustc/f137043e018f2024e0414a9153ea728c203ae8e5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/cranelift-frontend/LICENSE %{buildroot}/usr/share/package-licenses/rustc/f137043e018f2024e0414a9153ea728c203ae8e5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/cranelift-jit/LICENSE %{buildroot}/usr/share/package-licenses/rustc/f137043e018f2024e0414a9153ea728c203ae8e5 || :
@@ -564,10 +559,14 @@ cp %{_builddir}/rustc-%{version}-src/vendor/crossbeam-deque/LICENSE-APACHE %{bui
 cp %{_builddir}/rustc-%{version}-src/vendor/crossbeam-deque/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/144111aa0f14ef5a181326683aa9ebbd9252bca6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/crossbeam-epoch-0.9.13/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/crossbeam-epoch-0.9.13/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/144111aa0f14ef5a181326683aa9ebbd9252bca6 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/crossbeam-epoch-0.9.14/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/crossbeam-epoch-0.9.14/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/144111aa0f14ef5a181326683aa9ebbd9252bca6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/crossbeam-epoch/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/crossbeam-epoch/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/144111aa0f14ef5a181326683aa9ebbd9252bca6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/crossbeam-utils-0.8.14/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/crossbeam-utils-0.8.14/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/144111aa0f14ef5a181326683aa9ebbd9252bca6 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/crossbeam-utils-0.8.15/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/crossbeam-utils-0.8.15/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/144111aa0f14ef5a181326683aa9ebbd9252bca6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/crossbeam-utils/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/crossbeam-utils/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/144111aa0f14ef5a181326683aa9ebbd9252bca6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/crypto-bigint/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/422e6fd980775f9997ed6735c28a14ad20c222e8 || :
@@ -595,14 +594,6 @@ cp %{_builddir}/rustc-%{version}-src/vendor/curl-sys/curl/COPYING %{buildroot}/u
 cp %{_builddir}/rustc-%{version}-src/vendor/curl-sys/curl/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/rustc/7d742d725c74463f26afc2c6b7433dff4296a315 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/curl-sys/curl/LICENSES/BSD-4-Clause-UC.txt %{buildroot}/usr/share/package-licenses/rustc/feee861aaf9633242cd771c1e117ecca6b2cc630 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/curl/LICENSE %{buildroot}/usr/share/package-licenses/rustc/bc76ce03c75ad5a571120014d7d48d377b935b82 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/cxx-build/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
-cp %{_builddir}/rustc-%{version}-src/vendor/cxx-build/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/cxx/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
-cp %{_builddir}/rustc-%{version}-src/vendor/cxx/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/cxxbridge-flags/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
-cp %{_builddir}/rustc-%{version}-src/vendor/cxxbridge-flags/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/cxxbridge-macro/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
-cp %{_builddir}/rustc-%{version}-src/vendor/cxxbridge-macro/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/dashmap/LICENSE %{buildroot}/usr/share/package-licenses/rustc/981659c962d4d6f47b27ebb02efb49da56cdd45e || :
 cp %{_builddir}/rustc-%{version}-src/vendor/datafrog/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/datafrog/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
@@ -629,10 +620,8 @@ cp %{_builddir}/rustc-%{version}-src/vendor/dirs-sys/LICENSE-APACHE %{buildroot}
 cp %{_builddir}/rustc-%{version}-src/vendor/dirs-sys/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/cf762fa3609793d5639ba9e1cbd254db276f50d3 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/dirs/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/43a3a49bd7af636c923a5ae475395b8e29320529 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/dirs/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/cf762fa3609793d5639ba9e1cbd254db276f50d3 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/displaydoc/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/displaydoc/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/dissimilar-1.0.4/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/dissimilar-1.0.4/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/displaydoc/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/aca374a3362a76702c50bd4e7d590a57f8834fc7 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/displaydoc/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/96c0ace4eb1b0a78134d978d3c6d656a860a670f || :
 cp %{_builddir}/rustc-%{version}-src/vendor/dissimilar/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/dissimilar/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/dlmalloc/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
@@ -645,12 +634,8 @@ cp %{_builddir}/rustc-%{version}-src/vendor/dunce/LICENSE %{buildroot}/usr/share
 cp %{_builddir}/rustc-%{version}-src/vendor/ecdsa/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d9f5b2ee0b9f629b3b8a8969d90f2cf654e03a8 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/ecdsa/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/6376baf29519261ce80f0994e4803a5339619fa5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/ed25519-compact/LICENSE %{buildroot}/usr/share/package-licenses/rustc/f172b445b210221077f7ef4979f22cd63e1d1970 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/either-1.6.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/either-1.6.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3a86cfdfa553511b381388859c9e94ce9e1f916b || :
 cp %{_builddir}/rustc-%{version}-src/vendor/either-1.6.1/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/either-1.6.1/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3a86cfdfa553511b381388859c9e94ce9e1f916b || :
-cp %{_builddir}/rustc-%{version}-src/vendor/either-1.8.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/either-1.8.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3a86cfdfa553511b381388859c9e94ce9e1f916b || :
 cp %{_builddir}/rustc-%{version}-src/vendor/either/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/either/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3a86cfdfa553511b381388859c9e94ce9e1f916b || :
 cp %{_builddir}/rustc-%{version}-src/vendor/elasticlunr-rs/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/b95542c0be3bd915a1e7d8df80711fce5cd0795b || :
@@ -661,16 +646,16 @@ cp %{_builddir}/rustc-%{version}-src/vendor/elliptic-curve/LICENSE-APACHE %{buil
 cp %{_builddir}/rustc-%{version}-src/vendor/elliptic-curve/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/7e3b58fb2c5de7fa3371285b3bb275c2fd037be7 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/elsa/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/elsa/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/b12c210e78112e40e89cc0e765a6335c6b4636b2 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/ena-0.14.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/ena-0.14.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/2bf5cac862d5a0480b5d5bcd3a1852d68bfeee84 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/ena/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/ena/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/2bf5cac862d5a0480b5d5bcd3a1852d68bfeee84 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/env_logger-0.7.1/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/env_logger-0.7.1/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9f3c36d2b7d381d9cf382a00166f3fbd06783636 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/env_logger-0.9.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/env_logger-0.9.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9f3c36d2b7d381d9cf382a00166f3fbd06783636 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/env_logger-0.9.3/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/env_logger-0.9.3/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/env_logger/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/env_logger/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/equivalent/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/equivalent/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/c371f0a7cbb203643d88566665a452f96bf1ab86 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/errno-0.3.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/errno-0.3.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/7a842f34e127456338641b14c7a00ec246d89fb6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/errno-dragonfly/LICENSE %{buildroot}/usr/share/package-licenses/rustc/73724f22eb580e208c5af2e3d089be349209e847 || :
@@ -682,8 +667,6 @@ cp %{_builddir}/rustc-%{version}-src/vendor/eyre/LICENSE-APACHE %{buildroot}/usr
 cp %{_builddir}/rustc-%{version}-src/vendor/eyre/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/fallible-iterator/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/fallible-iterator/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/4679f9ac0b7f5da9fd22e62c69771ff9331a7a3d || :
-cp %{_builddir}/rustc-%{version}-src/vendor/fastrand-1.8.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/fastrand-1.8.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/fastrand/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/fastrand/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/fd-lock/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/30f17dff9bd0a25708e76cced5d5f933a66e014e || :
@@ -698,12 +681,12 @@ cp %{_builddir}/rustc-%{version}-src/vendor/filetime-0.2.16/LICENSE-APACHE %{bui
 cp %{_builddir}/rustc-%{version}-src/vendor/filetime-0.2.16/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/filetime-0.2.19/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/filetime-0.2.19/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/filetime-0.2.20/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/filetime-0.2.20/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/filetime/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/filetime/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/fixedbitset/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/fixedbitset/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/0c160db99de1b5577d1160540f1a1312b01a3f5b || :
+cp %{_builddir}/rustc-%{version}-src/vendor/flate2-1.0.25/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/flate2-1.0.25/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/flate2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/flate2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/fluent-bundle/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/e94c089c69088048bc3ccbe644f22f2cbe46cad4 || :
@@ -716,13 +699,12 @@ cp %{_builddir}/rustc-%{version}-src/vendor/foreign-types-shared/LICENSE-APACHE 
 cp %{_builddir}/rustc-%{version}-src/vendor/foreign-types-shared/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/bee28506691ec4e9291da8a55a450cb5304d3f5d || :
 cp %{_builddir}/rustc-%{version}-src/vendor/foreign-types/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/foreign-types/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/bee28506691ec4e9291da8a55a450cb5304d3f5d || :
-cp %{_builddir}/rustc-%{version}-src/vendor/form_urlencoded-1.0.1/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/form_urlencoded-1.0.1/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/738188f5fed28a950b0fede659706238ec35f8bb || :
+cp %{_builddir}/rustc-%{version}-src/vendor/form_urlencoded-1.1.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/form_urlencoded-1.1.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/738188f5fed28a950b0fede659706238ec35f8bb || :
 cp %{_builddir}/rustc-%{version}-src/vendor/form_urlencoded/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/form_urlencoded/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/738188f5fed28a950b0fede659706238ec35f8bb || :
 cp %{_builddir}/rustc-%{version}-src/vendor/fs-err/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/aca374a3362a76702c50bd4e7d590a57f8834fc7 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/fs-err/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/96c0ace4eb1b0a78134d978d3c6d656a860a670f || :
-cp %{_builddir}/rustc-%{version}-src/vendor/fs_extra/LICENSE %{buildroot}/usr/share/package-licenses/rustc/f2515ca1c978fa1b1d6e13a8a9ae63a36a2d52cd || :
 cp %{_builddir}/rustc-%{version}-src/vendor/fsevent-sys/LICENSE %{buildroot}/usr/share/package-licenses/rustc/50eaa7c436d7e44988ee682051992fa0600966dd || :
 cp %{_builddir}/rustc-%{version}-src/vendor/fst/COPYING %{buildroot}/usr/share/package-licenses/rustc/dd445710e6e4caccc4f8a587a130eaeebe83f6f6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/fst/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/4c8990add9180fc59efa5b0d8faf643c9709501e || :
@@ -747,41 +729,115 @@ cp %{_builddir}/rustc-%{version}-src/vendor/futures-util/LICENSE-APACHE %{buildr
 cp %{_builddir}/rustc-%{version}-src/vendor/futures-util/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/067f31555f328efb78075174add7db97d98618c6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/futures/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/e81567c196622efa36b46c5fd53cde741aaf0993 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/futures/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/067f31555f328efb78075174add7db97d98618c6 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/generic-array-0.14.4/LICENSE %{buildroot}/usr/share/package-licenses/rustc/cb74eb831db08b7fe98f84b59c9bda195e5a3588 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/generic-array-0.14.5/LICENSE %{buildroot}/usr/share/package-licenses/rustc/cb74eb831db08b7fe98f84b59c9bda195e5a3588 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/generic-array/LICENSE %{buildroot}/usr/share/package-licenses/rustc/cb74eb831db08b7fe98f84b59c9bda195e5a3588 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/getopts/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/getopts/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9f3c36d2b7d381d9cf382a00166f3fbd06783636 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/getrandom-0.2.8/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/e9b475b5dccf14bd66d72dd12a04db75eaad1a9e || :
-cp %{_builddir}/rustc-%{version}-src/vendor/getrandom-0.2.8/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/d74ad13f1402c35008f22bc588a6b8199ed164d3 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/getrandom/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/e9b475b5dccf14bd66d72dd12a04db75eaad1a9e || :
 cp %{_builddir}/rustc-%{version}-src/vendor/getrandom/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/d74ad13f1402c35008f22bc588a6b8199ed164d3 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/gimli-0.26.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/gimli-0.26.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/60c3522081bf15d7ac1d4c5a63de425ef253e87a || :
-cp %{_builddir}/rustc-%{version}-src/vendor/gimli-0.27.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/gimli-0.27.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/60c3522081bf15d7ac1d4c5a63de425ef253e87a || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gimli-0.27.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gimli-0.27.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/60c3522081bf15d7ac1d4c5a63de425ef253e87a || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gimli-0.27.3/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gimli-0.27.3/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/60c3522081bf15d7ac1d4c5a63de425ef253e87a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/gimli/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/gimli/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/60c3522081bf15d7ac1d4c5a63de425ef253e87a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/git2-curl/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/git2-curl/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/git2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/git2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-actor/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-actor/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-attributes/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-attributes/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-bitmap/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-bitmap/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-chunk/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-chunk/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-command/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-command/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-commitgraph/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-commitgraph/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-config-value/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-config-value/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
 cp %{_builddir}/rustc-%{version}-src/vendor/gix-config/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/gix-config/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-credentials/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-credentials/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-date/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-date/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-diff/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-diff/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-discover/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-discover/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-features/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-features/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-fs/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-fs/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-glob/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-glob/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-hash/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-hash/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-hashtable/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-hashtable/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-ignore/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-ignore/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-index/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-index/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
 cp %{_builddir}/rustc-%{version}-src/vendor/gix-lock/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/gix-lock/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-mailmap/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-mailmap/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-negotiate/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-negotiate/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-object/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-object/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-odb/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-odb/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-pack/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-pack/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-packetline/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-packetline/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-path/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-path/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-prompt/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-prompt/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-protocol/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-protocol/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-quote/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-quote/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-ref/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-ref/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-refspec/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-refspec/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-revision/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-revision/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-revwalk/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-revwalk/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-sec/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-sec/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
 cp %{_builddir}/rustc-%{version}-src/vendor/gix-tempfile/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/gix-tempfile/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
-cp %{_builddir}/rustc-%{version}-src/vendor/glob-0.3.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/glob-0.3.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9f3c36d2b7d381d9cf382a00166f3fbd06783636 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-transport/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-transport/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-traverse/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-traverse/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-url/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-url/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-utils/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-utils/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-validate/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-validate/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-worktree/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix-worktree/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d24f1f89492680c57ce68b104061ef31f49f626 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/gix/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/52c3001770ac1b5d3efdbf97b5d3a016b4699dad || :
 cp %{_builddir}/rustc-%{version}-src/vendor/glob/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/glob/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9f3c36d2b7d381d9cf382a00166f3fbd06783636 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/globset-0.4.8/COPYING %{buildroot}/usr/share/package-licenses/rustc/dd445710e6e4caccc4f8a587a130eaeebe83f6f6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/globset-0.4.8/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/4c8990add9180fc59efa5b0d8faf643c9709501e || :
 cp %{_builddir}/rustc-%{version}-src/vendor/globset-0.4.8/UNLICENSE %{buildroot}/usr/share/package-licenses/rustc/ff007ce11f3ff7964f1a5b04202c4e95b5c82c85 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/globset-0.4.9/COPYING %{buildroot}/usr/share/package-licenses/rustc/dd445710e6e4caccc4f8a587a130eaeebe83f6f6 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/globset-0.4.9/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/4c8990add9180fc59efa5b0d8faf643c9709501e || :
-cp %{_builddir}/rustc-%{version}-src/vendor/globset-0.4.9/UNLICENSE %{buildroot}/usr/share/package-licenses/rustc/ff007ce11f3ff7964f1a5b04202c4e95b5c82c85 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/globset/COPYING %{buildroot}/usr/share/package-licenses/rustc/dd445710e6e4caccc4f8a587a130eaeebe83f6f6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/globset/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/4c8990add9180fc59efa5b0d8faf643c9709501e || :
 cp %{_builddir}/rustc-%{version}-src/vendor/globset/UNLICENSE %{buildroot}/usr/share/package-licenses/rustc/ff007ce11f3ff7964f1a5b04202c4e95b5c82c85 || :
@@ -798,26 +854,20 @@ cp %{_builddir}/rustc-%{version}-src/vendor/handlebars/LICENSE %{buildroot}/usr/
 cp %{_builddir}/rustc-%{version}-src/vendor/handlebars/wasm/LICENSE %{buildroot}/usr/share/package-licenses/rustc/eee8fef409d5df7bcd6f006386129ee34e84b195 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/hashbrown-0.12.3/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/hashbrown-0.12.3/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/c9c1c33aee599ebfdfb0bc2aed9ea082d9e3173a || :
-cp %{_builddir}/rustc-%{version}-src/vendor/hashbrown-0.13.1/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/hashbrown-0.13.1/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/c9c1c33aee599ebfdfb0bc2aed9ea082d9e3173a || :
+cp %{_builddir}/rustc-%{version}-src/vendor/hashbrown-0.13.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/hashbrown-0.13.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/c9c1c33aee599ebfdfb0bc2aed9ea082d9e3173a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/hashbrown/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/hashbrown/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/c9c1c33aee599ebfdfb0bc2aed9ea082d9e3173a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/heck-0.3.3/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/heck-0.3.3/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/60c3522081bf15d7ac1d4c5a63de425ef253e87a || :
-cp %{_builddir}/rustc-%{version}-src/vendor/heck-0.4.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/heck-0.4.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/60c3522081bf15d7ac1d4c5a63de425ef253e87a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/heck/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/heck/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/60c3522081bf15d7ac1d4c5a63de425ef253e87a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/hermit-abi-0.1.19/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/hermit-abi-0.1.19/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/hermit-abi-0.2.6/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/hermit-abi-0.2.6/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/hermit-abi-0.3.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/hermit-abi-0.3.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/hermit-abi/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/hermit-abi/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/hex-0.4.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/hex-0.4.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/b916da18877fcec3d37860fe60c1189c447e90b9 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/hex/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/hex/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/b916da18877fcec3d37860fe60c1189c447e90b9 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/hkdf/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/094651333226eb0bd70c5f9f3210cdf9bfbb8077 || :
@@ -834,16 +884,14 @@ cp %{_builddir}/rustc-%{version}-src/vendor/http-auth/LICENSE-APACHE.txt %{build
 cp %{_builddir}/rustc-%{version}-src/vendor/http-auth/LICENSE-MIT.txt %{buildroot}/usr/share/package-licenses/rustc/56b0f2642315dfade307a8b5439ad856fe8910c8 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/humantime-1.3.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/humantime-1.3.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ff432d95fdfee3587e45abd61685c2209d245901 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/humantime-2.0.1/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/humantime-2.0.1/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ff432d95fdfee3587e45abd61685c2209d245901 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/humantime/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/humantime/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ff432d95fdfee3587e45abd61685c2209d245901 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/iana-time-zone-haiku/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/ff44b187892fcf1cd15a3ca61b498041b28afecc || :
 cp %{_builddir}/rustc-%{version}-src/vendor/iana-time-zone-haiku/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/d3f4001d9de83a122956c9195d73e2507bf6c533 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/iana-time-zone/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/ff44b187892fcf1cd15a3ca61b498041b28afecc || :
 cp %{_builddir}/rustc-%{version}-src/vendor/iana-time-zone/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/d3f4001d9de83a122956c9195d73e2507bf6c533 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/idna-0.2.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/idna-0.2.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/738188f5fed28a950b0fede659706238ec35f8bb || :
+cp %{_builddir}/rustc-%{version}-src/vendor/idna-0.3.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/idna-0.3.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/a81399b7c3ec2d4619848fd59c11d21211fc3b86 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/idna/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/idna/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/a81399b7c3ec2d4619848fd59c11d21211fc3b86 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/if_chain/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
@@ -856,11 +904,11 @@ cp %{_builddir}/rustc-%{version}-src/vendor/ignore/LICENSE-MIT %{buildroot}/usr/
 cp %{_builddir}/rustc-%{version}-src/vendor/ignore/UNLICENSE %{buildroot}/usr/share/package-licenses/rustc/ff007ce11f3ff7964f1a5b04202c4e95b5c82c85 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/im-rc/LICENCE.md %{buildroot}/usr/share/package-licenses/rustc/7c1853ff34974a6b19247c039a0f60e06438f877 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/imara-diff/LICENSE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/indexmap-1.9.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/indexmap-1.9.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/7e5936a6fa3cf3518c01cec41345adf27399fe12 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/indexmap-1.9.3/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/indexmap-1.9.3/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/7e5936a6fa3cf3518c01cec41345adf27399fe12 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/indexmap/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/indexmap/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/7e5936a6fa3cf3518c01cec41345adf27399fe12 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/indoc/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/indoc/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/indoc/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/inotify-sys/LICENSE %{buildroot}/usr/share/package-licenses/rustc/f3b0197751808b8dbd31f85c64f9ebd011c4d0f5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/inotify/LICENSE %{buildroot}/usr/share/package-licenses/rustc/1ae671f98444c3acb906a48b5c3640a28daf8de8 || :
@@ -869,17 +917,14 @@ cp %{_builddir}/rustc-%{version}-src/vendor/intl-memoizer/LICENSE-APACHE %{build
 cp %{_builddir}/rustc-%{version}-src/vendor/intl-memoizer/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/fdfbda78ad0b863317a64dddfe6491935fc18ffc || :
 cp %{_builddir}/rustc-%{version}-src/vendor/io-close/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/io-close/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/391aa8dcafb10e0900e0e0ff6f281958ed1e8030 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/io-lifetimes-1.0.3/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/io-lifetimes-1.0.3/LICENSE-Apache-2.0_WITH_LLVM-exception %{buildroot}/usr/share/package-licenses/rustc/f137043e018f2024e0414a9153ea728c203ae8e5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/io-lifetimes-1.0.3/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/io-lifetimes-1.0.9/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/io-lifetimes-1.0.9/LICENSE-Apache-2.0_WITH_LLVM-exception %{buildroot}/usr/share/package-licenses/rustc/f137043e018f2024e0414a9153ea728c203ae8e5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/io-lifetimes-1.0.9/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/io-lifetimes/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/io-lifetimes/LICENSE-Apache-2.0_WITH_LLVM-exception %{buildroot}/usr/share/package-licenses/rustc/f137043e018f2024e0414a9153ea728c203ae8e5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/io-lifetimes/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/is-terminal-0.4.6/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/is-terminal-0.4.6/LICENSE-MIT-atty %{buildroot}/usr/share/package-licenses/rustc/ffe3aa1f76c00b737c79c3a17b9e30163a936bc0 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/is-terminal-0.4.7/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/is-terminal-0.4.7/LICENSE-MIT-atty %{buildroot}/usr/share/package-licenses/rustc/ffe3aa1f76c00b737c79c3a17b9e30163a936bc0 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/is-terminal/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/is-terminal/LICENSE-MIT-atty %{buildroot}/usr/share/package-licenses/rustc/ffe3aa1f76c00b737c79c3a17b9e30163a936bc0 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/itertools/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
@@ -888,8 +933,6 @@ cp %{_builddir}/rustc-%{version}-src/vendor/itoa-0.4.8/LICENSE-APACHE %{buildroo
 cp %{_builddir}/rustc-%{version}-src/vendor/itoa-0.4.8/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/itoa-1.0.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/itoa-1.0.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/itoa-1.0.5/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/itoa-1.0.5/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/itoa/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/itoa/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/jemalloc-sys/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
@@ -915,12 +958,12 @@ cp %{_builddir}/rustc-%{version}-src/vendor/leb128/LICENSE-APACHE %{buildroot}/u
 cp %{_builddir}/rustc-%{version}-src/vendor/leb128/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/60c3522081bf15d7ac1d4c5a63de425ef253e87a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/libc-0.2.138/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/libc-0.2.138/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/36d69bcb88153a640740000efe933b009420ce7e || :
-cp %{_builddir}/rustc-%{version}-src/vendor/libc-0.2.139/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
-cp %{_builddir}/rustc-%{version}-src/vendor/libc-0.2.139/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/36d69bcb88153a640740000efe933b009420ce7e || :
 cp %{_builddir}/rustc-%{version}-src/vendor/libc-0.2.140/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/libc-0.2.140/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/36d69bcb88153a640740000efe933b009420ce7e || :
-cp %{_builddir}/rustc-%{version}-src/vendor/libc-0.2.143/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
-cp %{_builddir}/rustc-%{version}-src/vendor/libc-0.2.143/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/36d69bcb88153a640740000efe933b009420ce7e || :
+cp %{_builddir}/rustc-%{version}-src/vendor/libc-0.2.141/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
+cp %{_builddir}/rustc-%{version}-src/vendor/libc-0.2.141/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/36d69bcb88153a640740000efe933b009420ce7e || :
+cp %{_builddir}/rustc-%{version}-src/vendor/libc-0.2.146/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
+cp %{_builddir}/rustc-%{version}-src/vendor/libc-0.2.146/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/36d69bcb88153a640740000efe933b009420ce7e || :
 cp %{_builddir}/rustc-%{version}-src/vendor/libc/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/libc/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/36d69bcb88153a640740000efe933b009420ce7e || :
 cp %{_builddir}/rustc-%{version}-src/vendor/libffi-sys/libffi/LICENSE %{buildroot}/usr/share/package-licenses/rustc/fad8637b50934ca226059878c444dcd0fbf2c071 || :
@@ -934,7 +977,6 @@ cp %{_builddir}/rustc-%{version}-src/vendor/libgit2-sys/libgit2/deps/pcre/cmake/
 cp %{_builddir}/rustc-%{version}-src/vendor/libgit2-sys/libgit2/deps/winhttp/COPYING.GPL %{buildroot}/usr/share/package-licenses/rustc/302250717721b22e804054f10e5a8d9c6e7328c4 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/libgit2-sys/libgit2/deps/winhttp/COPYING.LGPL %{buildroot}/usr/share/package-licenses/rustc/01a6b4bf79aca9b556822601186afab86e8c4fbf || :
 cp %{_builddir}/rustc-%{version}-src/vendor/libgit2-sys/libgit2/deps/zlib/COPYING %{buildroot}/usr/share/package-licenses/rustc/07821586dcc816d67ff045b9708fe8291fd67e62 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/libloading-0.7.1/LICENSE %{buildroot}/usr/share/package-licenses/rustc/4ad37fc99fecc5cda018043361f5b12e350e4052 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/libloading/LICENSE %{buildroot}/usr/share/package-licenses/rustc/4ad37fc99fecc5cda018043361f5b12e350e4052 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/libm-0.1.4/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/libm-0.1.4/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/744183c4ca46703f4b738aca20e238e11c9a3b12 || :
@@ -954,24 +996,25 @@ cp %{_builddir}/rustc-%{version}-src/vendor/libz-sys/LICENSE-APACHE %{buildroot}
 cp %{_builddir}/rustc-%{version}-src/vendor/libz-sys/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/76c0e372bfabc4a503dd04d9281f808b33ded4f0 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/libz-sys/src/zlib-ng/LICENSE.md %{buildroot}/usr/share/package-licenses/rustc/1e0b08e7a2124c67c42261ac819e2340a2dd912c || :
 cp %{_builddir}/rustc-%{version}-src/vendor/libz-sys/src/zlib/contrib/dotzlib/LICENSE_1_0.txt %{buildroot}/usr/share/package-licenses/rustc/892b34f7865d90a6f949f50d95e49625a10bc7f0 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/link-cplusplus/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/link-cplusplus/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/linked-hash-map/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5feaf15b3fa7d2d226d811e5fcd49098a1ea520c || :
 cp %{_builddir}/rustc-%{version}-src/vendor/linked-hash-map/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/60c3522081bf15d7ac1d4c5a63de425ef253e87a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/linux-raw-sys-0.3.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/linux-raw-sys-0.3.2/LICENSE-Apache-2.0_WITH_LLVM-exception %{buildroot}/usr/share/package-licenses/rustc/f137043e018f2024e0414a9153ea728c203ae8e5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/linux-raw-sys-0.3.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/linux-raw-sys-0.3.8/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/linux-raw-sys-0.3.8/LICENSE-Apache-2.0_WITH_LLVM-exception %{buildroot}/usr/share/package-licenses/rustc/f137043e018f2024e0414a9153ea728c203ae8e5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/linux-raw-sys-0.3.8/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/linux-raw-sys/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/linux-raw-sys/LICENSE-Apache-2.0_WITH_LLVM-exception %{buildroot}/usr/share/package-licenses/rustc/f137043e018f2024e0414a9153ea728c203ae8e5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/linux-raw-sys/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/lock_api-0.4.7/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/lock_api-0.4.7/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9a2b6b4ad55ec42cf19fc686c74668d3a6303ae7 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/lock_api-0.4.9/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/lock_api-0.4.9/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9a2b6b4ad55ec42cf19fc686c74668d3a6303ae7 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/lock_api/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/lock_api/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9a2b6b4ad55ec42cf19fc686c74668d3a6303ae7 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/log-0.4.14/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/aca374a3362a76702c50bd4e7d590a57f8834fc7 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/log-0.4.14/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/f9cc84dfc567fdc0979fddc3e6257191d8ebc9d8 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/log/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/aca374a3362a76702c50bd4e7d590a57f8834fc7 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/log/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/f9cc84dfc567fdc0979fddc3e6257191d8ebc9d8 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/log-0.4.17/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/aca374a3362a76702c50bd4e7d590a57f8834fc7 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/log-0.4.17/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/f9cc84dfc567fdc0979fddc3e6257191d8ebc9d8 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/log/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/log/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9f3c36d2b7d381d9cf382a00166f3fbd06783636 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/lsp-types/LICENSE %{buildroot}/usr/share/package-licenses/rustc/cf9a273dfe3eb879848a85a0547a538c350dc335 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/lzma-sys-0.1.17/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/lzma-sys-0.1.17/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9447f5c315f76e2fd05b1ef9107dee6f700337ef || :
@@ -991,7 +1034,6 @@ cp %{_builddir}/rustc-%{version}-src/vendor/maplit/LICENSE-MIT %{buildroot}/usr/
 cp %{_builddir}/rustc-%{version}-src/vendor/markup5ever/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/markup5ever/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/7f358d75b6f5bd544ce84621510900e11b27d3ba || :
 cp %{_builddir}/rustc-%{version}-src/vendor/matchers/LICENSE %{buildroot}/usr/share/package-licenses/rustc/739a40593cfdae7ce8d08836b16d0a0af314fff8 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/matches/LICENSE %{buildroot}/usr/share/package-licenses/rustc/1b0e913d41a66c988376898aa995d6c2f45bb50c || :
 cp %{_builddir}/rustc-%{version}-src/vendor/maybe-async/LICENSE %{buildroot}/usr/share/package-licenses/rustc/97106b5f1fc5e4e2d80ab00a91465441968455a6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/md-5/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/422e6fd980775f9997ed6735c28a14ad20c222e8 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/md-5/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/1741e5596832e62cd0791301fc9dcf4b9d0bc2c9 || :
@@ -1001,14 +1043,12 @@ cp %{_builddir}/rustc-%{version}-src/vendor/mdbook/src/theme/fonts/SOURCE-CODE-P
 cp %{_builddir}/rustc-%{version}-src/vendor/memchr/COPYING %{buildroot}/usr/share/package-licenses/rustc/dd445710e6e4caccc4f8a587a130eaeebe83f6f6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/memchr/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/4c8990add9180fc59efa5b0d8faf643c9709501e || :
 cp %{_builddir}/rustc-%{version}-src/vendor/memchr/UNLICENSE %{buildroot}/usr/share/package-licenses/rustc/ff007ce11f3ff7964f1a5b04202c4e95b5c82c85 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/memmap2-0.2.1/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/c1f96d6a54446beefad79ef49b3c123c597b7a40 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/memmap2-0.2.1/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/e22df6a40db2eb4307dbc53b2cffa548e2bcbd2c || :
-cp %{_builddir}/rustc-%{version}-src/vendor/memmap2-0.5.8/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/c1f96d6a54446beefad79ef49b3c123c597b7a40 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/memmap2-0.5.8/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/d5c0c6beed5e77d571189516c53cf05f1e58d9ca || :
+cp %{_builddir}/rustc-%{version}-src/vendor/memmap2-0.2.3/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/c1f96d6a54446beefad79ef49b3c123c597b7a40 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/memmap2-0.2.3/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/e22df6a40db2eb4307dbc53b2cffa548e2bcbd2c || :
 cp %{_builddir}/rustc-%{version}-src/vendor/memmap2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/c1f96d6a54446beefad79ef49b3c123c597b7a40 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/memmap2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/d5c0c6beed5e77d571189516c53cf05f1e58d9ca || :
-cp %{_builddir}/rustc-%{version}-src/vendor/memoffset-0.6.5/LICENSE %{buildroot}/usr/share/package-licenses/rustc/02bf11a87b9bbacedf2fcf4856af3b933faef82e || :
 cp %{_builddir}/rustc-%{version}-src/vendor/memoffset-0.7.1/LICENSE %{buildroot}/usr/share/package-licenses/rustc/02bf11a87b9bbacedf2fcf4856af3b933faef82e || :
+cp %{_builddir}/rustc-%{version}-src/vendor/memoffset-0.8.0/LICENSE %{buildroot}/usr/share/package-licenses/rustc/02bf11a87b9bbacedf2fcf4856af3b933faef82e || :
 cp %{_builddir}/rustc-%{version}-src/vendor/memoffset/LICENSE %{buildroot}/usr/share/package-licenses/rustc/02bf11a87b9bbacedf2fcf4856af3b933faef82e || :
 cp %{_builddir}/rustc-%{version}-src/vendor/mimalloc/LICENSE.txt %{buildroot}/usr/share/package-licenses/rustc/f65e4d70aeeec987234f2cd1389a013bcc7ab46e || :
 cp %{_builddir}/rustc-%{version}-src/vendor/mime/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
@@ -1018,41 +1058,41 @@ cp %{_builddir}/rustc-%{version}-src/vendor/minifier/LICENSE %{buildroot}/usr/sh
 cp %{_builddir}/rustc-%{version}-src/vendor/minimal-lexical/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5feaf15b3fa7d2d226d811e5fcd49098a1ea520c || :
 cp %{_builddir}/rustc-%{version}-src/vendor/minimal-lexical/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/minimal-lexical/LICENSE.md %{buildroot}/usr/share/package-licenses/rustc/cd3fe820606ed34ac2591caf068c7cabd3ab3509 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/miniz_oxide-0.6.2/LICENSE %{buildroot}/usr/share/package-licenses/rustc/18d7fe3c54698817feec1f2e04a9d5a0f046a80c || :
+cp %{_builddir}/rustc-%{version}-src/vendor/miniz_oxide-0.6.2/LICENSE-APACHE.md %{buildroot}/usr/share/package-licenses/rustc/598f87f072f66e2269dd6919292b2934dbb20492 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/miniz_oxide-0.6.2/LICENSE-MIT.md %{buildroot}/usr/share/package-licenses/rustc/18d7fe3c54698817feec1f2e04a9d5a0f046a80c || :
+cp %{_builddir}/rustc-%{version}-src/vendor/miniz_oxide-0.6.2/LICENSE-ZLIB.md %{buildroot}/usr/share/package-licenses/rustc/11f0f1bee61ba6393c3dc7aefee7b92b604ff6c0 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/miniz_oxide/LICENSE %{buildroot}/usr/share/package-licenses/rustc/18d7fe3c54698817feec1f2e04a9d5a0f046a80c || :
 cp %{_builddir}/rustc-%{version}-src/vendor/miniz_oxide/LICENSE-APACHE.md %{buildroot}/usr/share/package-licenses/rustc/598f87f072f66e2269dd6919292b2934dbb20492 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/miniz_oxide/LICENSE-MIT.md %{buildroot}/usr/share/package-licenses/rustc/18d7fe3c54698817feec1f2e04a9d5a0f046a80c || :
 cp %{_builddir}/rustc-%{version}-src/vendor/miniz_oxide/LICENSE-ZLIB.md %{buildroot}/usr/share/package-licenses/rustc/11f0f1bee61ba6393c3dc7aefee7b92b604ff6c0 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/mio/LICENSE %{buildroot}/usr/share/package-licenses/rustc/27541df8e6d877c3912bbe4c48711f36e826cc5b || :
-cp %{_builddir}/rustc-%{version}-src/vendor/miow-0.3.7/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/miow-0.3.7/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/miow/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/miow/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/new_debug_unreachable/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/108bb98fdf8f27765ea240d80481be8362175ca7 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/nix/LICENSE %{buildroot}/usr/share/package-licenses/rustc/a6fe1503554eb18138838c526d150f58fc104133 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/nom-7.1.0/LICENSE %{buildroot}/usr/share/package-licenses/rustc/27ea6989d4f34b7b944eb884410a31ae20d11686 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/nohash-hasher/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/nom/LICENSE %{buildroot}/usr/share/package-licenses/rustc/27ea6989d4f34b7b944eb884410a31ae20d11686 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/normalize-line-endings/LICENSE %{buildroot}/usr/share/package-licenses/rustc/92170cdc034b2ff819323ff670d3b7266c8bffcd || :
 cp %{_builddir}/rustc-%{version}-src/vendor/ntapi/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/95606c72511bbbbeeecbdb16101d614a4680e622 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/ntapi/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/6dd934749d3a64b9990030d688a6b3b17ad1004d || :
 cp %{_builddir}/rustc-%{version}-src/vendor/nu-ansi-term/LICENCE %{buildroot}/usr/share/package-licenses/rustc/fea05fa01bac661c706e9e134d9d80b2248bb065 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/num-integer/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/num-integer/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9f3c36d2b7d381d9cf382a00166f3fbd06783636 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/num-traits-0.2.12/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/num-traits-0.2.12/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9f3c36d2b7d381d9cf382a00166f3fbd06783636 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/num-traits/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/num-traits/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9f3c36d2b7d381d9cf382a00166f3fbd06783636 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/num_cpus-1.13.1/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/num_cpus-1.13.1/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ec9737a4e769cce48d5c95d9c75a4ba5f29a2563 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/num_cpus-1.15.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/num_cpus-1.15.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ec9737a4e769cce48d5c95d9c75a4ba5f29a2563 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/num_cpus/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/num_cpus/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ec9737a4e769cce48d5c95d9c75a4ba5f29a2563 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/num_threads/LICENSE-Apache %{buildroot}/usr/share/package-licenses/rustc/d7922ed0153e53eb7d63ea3fcae1040472c67679 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/num_threads/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/31e133ad6e12ed607bafa6decc49865e76e2a8e0 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/object-0.30.1/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/object-0.30.1/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/dd2f4bd6d87fe2780fc8e4135ce7dac6ff0b33ee || :
-cp %{_builddir}/rustc-%{version}-src/vendor/object-0.30.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/object-0.30.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/dd2f4bd6d87fe2780fc8e4135ce7dac6ff0b33ee || :
 cp %{_builddir}/rustc-%{version}-src/vendor/object-0.30.3/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/object-0.30.3/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/dd2f4bd6d87fe2780fc8e4135ce7dac6ff0b33ee || :
+cp %{_builddir}/rustc-%{version}-src/vendor/object-0.30.4/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/object-0.30.4/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/dd2f4bd6d87fe2780fc8e4135ce7dac6ff0b33ee || :
+cp %{_builddir}/rustc-%{version}-src/vendor/object-0.31.1/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/object-0.31.1/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/dd2f4bd6d87fe2780fc8e4135ce7dac6ff0b33ee || :
 cp %{_builddir}/rustc-%{version}-src/vendor/object/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/object/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/dd2f4bd6d87fe2780fc8e4135ce7dac6ff0b33ee || :
 cp %{_builddir}/rustc-%{version}-src/vendor/odht/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
@@ -1061,8 +1101,8 @@ cp %{_builddir}/rustc-%{version}-src/vendor/once_cell-1.12.0/LICENSE-APACHE %{bu
 cp %{_builddir}/rustc-%{version}-src/vendor/once_cell-1.12.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/once_cell-1.16.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/once_cell-1.16.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/once_cell-1.17.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/once_cell-1.17.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/once_cell-1.17.1/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/once_cell-1.17.1/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/once_cell/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/once_cell/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/oorandom/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/83f84f78511c0e3dc95622f9a0b6e151a9ae4ea5 || :
@@ -1079,15 +1119,11 @@ cp %{_builddir}/rustc-%{version}-src/vendor/openssl-src/LICENSE-APACHE %{buildro
 cp %{_builddir}/rustc-%{version}-src/vendor/openssl-src/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/openssl-src/openssl/LICENSE %{buildroot}/usr/share/package-licenses/rustc/607e96d7bc75d9f884a8e210d276cca4006e0753 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/openssl-src/openssl/external/perl/Text-Template-1.46/COPYING %{buildroot}/usr/share/package-licenses/rustc/ab8577d3eb0eedf3f98004e381a9cee30e7224e1 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/openssl-sys-0.9.85/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/openssl-sys/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/openssl/LICENSE %{buildroot}/usr/share/package-licenses/rustc/ffd5a0caea8a089d58fb6acf5a4714dffb06d0dc || :
 cp %{_builddir}/rustc-%{version}-src/vendor/ordered-float/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/108bb98fdf8f27765ea240d80481be8362175ca7 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/orion/LICENSE %{buildroot}/usr/share/package-licenses/rustc/0d9bf64bd9a38d425477d654049879f19445632d || :
 cp %{_builddir}/rustc-%{version}-src/vendor/os_info/LICENSE %{buildroot}/usr/share/package-licenses/rustc/05c67626b7170daad02a61caec4a2508fca2e27b || :
-cp %{_builddir}/rustc-%{version}-src/vendor/os_str_bytes/COPYRIGHT %{buildroot}/usr/share/package-licenses/rustc/1e5fd56e72eb7e007f7be1ca11be95ac2febab25 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/os_str_bytes/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
-cp %{_builddir}/rustc-%{version}-src/vendor/os_str_bytes/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/17fe2c1c3a52b16b4063993fd998fc0e02e1f6a9 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/output_vt100/LICENSE %{buildroot}/usr/share/package-licenses/rustc/4c1c71430c0885114ef42fc256b803241cdcf898 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/overload/LICENSE %{buildroot}/usr/share/package-licenses/rustc/839963b8e6356d7d297f5124373d62b4c88ac3a8 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/owo-colors/LICENSE %{buildroot}/usr/share/package-licenses/rustc/d678d723983cdba8c0182749676fe0ac87e74173 || :
@@ -1099,12 +1135,8 @@ cp %{_builddir}/rustc-%{version}-src/vendor/parking_lot-0.11.2/LICENSE-APACHE %{
 cp %{_builddir}/rustc-%{version}-src/vendor/parking_lot-0.11.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9a2b6b4ad55ec42cf19fc686c74668d3a6303ae7 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/parking_lot/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/parking_lot/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9a2b6b4ad55ec42cf19fc686c74668d3a6303ae7 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/parking_lot_core-0.8.5/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/parking_lot_core-0.8.5/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9a2b6b4ad55ec42cf19fc686c74668d3a6303ae7 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/parking_lot_core-0.8.6/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/parking_lot_core-0.8.6/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9a2b6b4ad55ec42cf19fc686c74668d3a6303ae7 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/parking_lot_core-0.9.4/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/parking_lot_core-0.9.4/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9a2b6b4ad55ec42cf19fc686c74668d3a6303ae7 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/parking_lot_core-0.9.6/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/parking_lot_core-0.9.6/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9a2b6b4ad55ec42cf19fc686c74668d3a6303ae7 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/parking_lot_core/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
@@ -1114,40 +1146,40 @@ cp %{_builddir}/rustc-%{version}-src/vendor/partial_ref/LICENSE-MIT %{buildroot}
 cp %{_builddir}/rustc-%{version}-src/vendor/partial_ref_derive/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/partial_ref_derive/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/6f429186961f24382ba067eaa5b4e1d8944e06ac || :
 cp %{_builddir}/rustc-%{version}-src/vendor/pasetors/LICENSE %{buildroot}/usr/share/package-licenses/rustc/63bb06cc7a70d77030cf26ec04ce5dc63f392e22 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/paste/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/paste/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/paste/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/pathdiff/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/e1407ae1e6330b00341bc7e2bd448921bd79194a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/pathdiff/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/pem-rfc7468/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/422e6fd980775f9997ed6735c28a14ad20c222e8 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/pem-rfc7468/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/6f7c5acfb3eedb50bf0c1ac08ad150bbd183940c || :
-cp %{_builddir}/rustc-%{version}-src/vendor/percent-encoding-2.1.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/percent-encoding-2.1.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/738188f5fed28a950b0fede659706238ec35f8bb || :
+cp %{_builddir}/rustc-%{version}-src/vendor/percent-encoding-2.2.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/percent-encoding-2.2.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/a81399b7c3ec2d4619848fd59c11d21211fc3b86 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/percent-encoding/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/percent-encoding/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/a81399b7c3ec2d4619848fd59c11d21211fc3b86 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/perf-event-open-sys/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/perf-event-open-sys/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/perf-event-open-sys-1.0.1/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/perf-event-open-sys-1.0.1/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/perf-event/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/perf-event/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/pest-2.5.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/pest-2.5.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/pest-2.6.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/pest-2.6.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/pest/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/pest/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/pest_derive-2.5.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/pest_derive-2.5.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/pest_derive-2.6.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/pest_derive-2.6.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/pest_derive/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/pest_derive/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/pest_generator-2.5.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/pest_generator-2.5.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/pest_generator-2.6.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/pest_generator-2.6.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/pest_generator/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/pest_generator/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/pest_meta-2.5.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/pest_meta-2.5.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/pest_meta-2.6.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/pest_meta-2.6.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/pest_meta/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/pest_meta/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/petgraph/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/petgraph/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3a86cfdfa553511b381388859c9e94ce9e1f916b || :
-cp %{_builddir}/rustc-%{version}-src/vendor/pin-project-lite-0.2.8/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/598f87f072f66e2269dd6919292b2934dbb20492 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/pin-project-lite-0.2.8/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/pin-project-lite-0.2.9/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/598f87f072f66e2269dd6919292b2934dbb20492 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/pin-project-lite-0.2.9/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/pin-project-lite/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/598f87f072f66e2269dd6919292b2934dbb20492 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/pin-project-lite/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/pin-utils/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/a2f60339450a52e61c6c1e27dc44bd1e671ad28e || :
@@ -1158,8 +1190,6 @@ cp %{_builddir}/rustc-%{version}-src/vendor/pkg-config-0.3.25/LICENSE-APACHE %{b
 cp %{_builddir}/rustc-%{version}-src/vendor/pkg-config-0.3.25/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/pkg-config/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/pkg-config/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/ppv-lite86-0.2.8/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/088830dcb78eba1a2052df69bd5cba5445e8f2d7 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/ppv-lite86-0.2.8/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/e1c86f32641f01a5b85d6e9b20138e8470b883fc || :
 cp %{_builddir}/rustc-%{version}-src/vendor/ppv-lite86/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/088830dcb78eba1a2052df69bd5cba5445e8f2d7 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/ppv-lite86/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/e1c86f32641f01a5b85d6e9b20138e8470b883fc || :
 cp %{_builddir}/rustc-%{version}-src/vendor/precomputed-hash/LICENSE %{buildroot}/usr/share/package-licenses/rustc/afcd08e00b65f2380ab5b0aa0217e8d62aa3cb2a || :
@@ -1169,14 +1199,10 @@ cp %{_builddir}/rustc-%{version}-src/vendor/pretty_env_logger/LICENSE-APACHE %{b
 cp %{_builddir}/rustc-%{version}-src/vendor/pretty_env_logger/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/a57300a26ebca63115ba199262d83ec3630788b7 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/primeorder/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/422e6fd980775f9997ed6735c28a14ad20c222e8 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/primeorder/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/4384f2493ed4d5e32e773db18d1c4b21cfb7e702 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/proc-macro-error-attr/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/a88eaffea57a51eedb5291e0d55a959df7659458 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/proc-macro-error-attr/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/655a437377cc2780990746fe2492fa16764df083 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/proc-macro-error/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/197cb40dc96ded1e036d13ef67fdc7a758ca1388 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/proc-macro-error/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/655a437377cc2780990746fe2492fa16764df083 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/proc-macro-hack/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/proc-macro-hack/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/594599b254cfdf4e8e7a570660d3f7861362acaf || :
-cp %{_builddir}/rustc-%{version}-src/vendor/proc-macro2-1.0.50/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
-cp %{_builddir}/rustc-%{version}-src/vendor/proc-macro2-1.0.50/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/proc-macro2-1.0.60/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
+cp %{_builddir}/rustc-%{version}-src/vendor/proc-macro2-1.0.60/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/proc-macro2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/proc-macro2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/prodash/LICENSE.md %{buildroot}/usr/share/package-licenses/rustc/4996b598ae000c234f174a265a8ff9a4885428ec || :
@@ -1192,16 +1218,15 @@ cp %{_builddir}/rustc-%{version}-src/vendor/quick-error-1.2.3/LICENSE-APACHE %{b
 cp %{_builddir}/rustc-%{version}-src/vendor/quick-error-1.2.3/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/1a00693a4e6240a4d040d1a1f76efaf50f20b8dd || :
 cp %{_builddir}/rustc-%{version}-src/vendor/quick-error/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/quick-error/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/1a00693a4e6240a4d040d1a1f76efaf50f20b8dd || :
-cp %{_builddir}/rustc-%{version}-src/vendor/quote-1.0.23/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/quote-1.0.23/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/quote-1.0.26/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
+cp %{_builddir}/rustc-%{version}-src/vendor/quote-1.0.26/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/quote-1.0.28/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
+cp %{_builddir}/rustc-%{version}-src/vendor/quote-1.0.28/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/quote/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/quote/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rand/COPYRIGHT %{buildroot}/usr/share/package-licenses/rustc/f14afa20edce530124d39cd56312c7781c19b267 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rand/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/4632a631b427f005d97734ea8c6a44090fec5cd9 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rand/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/d74ad13f1402c35008f22bc588a6b8199ed164d3 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/rand_chacha-0.3.0/COPYRIGHT %{buildroot}/usr/share/package-licenses/rustc/f14afa20edce530124d39cd56312c7781c19b267 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/rand_chacha-0.3.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/e9b475b5dccf14bd66d72dd12a04db75eaad1a9e || :
-cp %{_builddir}/rustc-%{version}-src/vendor/rand_chacha-0.3.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/d74ad13f1402c35008f22bc588a6b8199ed164d3 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rand_chacha/COPYRIGHT %{buildroot}/usr/share/package-licenses/rustc/f14afa20edce530124d39cd56312c7781c19b267 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rand_chacha/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/e9b475b5dccf14bd66d72dd12a04db75eaad1a9e || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rand_chacha/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/d74ad13f1402c35008f22bc588a6b8199ed164d3 || :
@@ -1213,21 +1238,14 @@ cp %{_builddir}/rustc-%{version}-src/vendor/rand_xorshift/LICENSE-MIT %{buildroo
 cp %{_builddir}/rustc-%{version}-src/vendor/rand_xoshiro/COPYRIGHT %{buildroot}/usr/share/package-licenses/rustc/f14afa20edce530124d39cd56312c7781c19b267 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rand_xoshiro/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rand_xoshiro/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/5917b83703c45ee336ab2f536d7a0ac46e94e1ff || :
-cp %{_builddir}/rustc-%{version}-src/vendor/rayon-1.5.3/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/rayon-1.5.3/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/2bf5cac862d5a0480b5d5bcd3a1852d68bfeee84 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rayon-1.6.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rayon-1.6.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/2bf5cac862d5a0480b5d5bcd3a1852d68bfeee84 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/rayon-1.6.1/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/rayon-1.6.1/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/2bf5cac862d5a0480b5d5bcd3a1852d68bfeee84 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rayon-core-1.10.1/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rayon-core-1.10.1/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/2bf5cac862d5a0480b5d5bcd3a1852d68bfeee84 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/rayon-core-1.9.3/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/rayon-core-1.9.3/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/2bf5cac862d5a0480b5d5bcd3a1852d68bfeee84 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rayon-core/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rayon-core/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/2bf5cac862d5a0480b5d5bcd3a1852d68bfeee84 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rayon/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rayon/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/2bf5cac862d5a0480b5d5bcd3a1852d68bfeee84 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/redox_syscall-0.2.10/LICENSE %{buildroot}/usr/share/package-licenses/rustc/a00165152c82ea55b9fc254890dc8860c25e3bb6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/redox_syscall-0.2.13/LICENSE %{buildroot}/usr/share/package-licenses/rustc/a00165152c82ea55b9fc254890dc8860c25e3bb6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/redox_syscall-0.2.16/LICENSE %{buildroot}/usr/share/package-licenses/rustc/a00165152c82ea55b9fc254890dc8860c25e3bb6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/redox_syscall/LICENSE %{buildroot}/usr/share/package-licenses/rustc/a00165152c82ea55b9fc254890dc8860c25e3bb6 || :
@@ -1236,9 +1254,9 @@ cp %{_builddir}/rustc-%{version}-src/vendor/regalloc2/LICENSE %{buildroot}/usr/s
 cp %{_builddir}/rustc-%{version}-src/vendor/regex-1.5.6/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/regex-1.5.6/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9f3c36d2b7d381d9cf382a00166f3fbd06783636 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/regex-1.5.6/src/testdata/LICENSE %{buildroot}/usr/share/package-licenses/rustc/553e82bef8637312393c95bc62e23e8f81fd9e47 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/regex-1.7.1/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/regex-1.7.1/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9f3c36d2b7d381d9cf382a00166f3fbd06783636 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/regex-1.7.1/src/testdata/LICENSE %{buildroot}/usr/share/package-licenses/rustc/553e82bef8637312393c95bc62e23e8f81fd9e47 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/regex-1.7.3/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/regex-1.7.3/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9f3c36d2b7d381d9cf382a00166f3fbd06783636 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/regex-1.7.3/src/testdata/LICENSE %{buildroot}/usr/share/package-licenses/rustc/553e82bef8637312393c95bc62e23e8f81fd9e47 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/regex-automata-0.1.10/COPYING %{buildroot}/usr/share/package-licenses/rustc/dd445710e6e4caccc4f8a587a130eaeebe83f6f6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/regex-automata-0.1.10/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/4c8990add9180fc59efa5b0d8faf643c9709501e || :
 cp %{_builddir}/rustc-%{version}-src/vendor/regex-automata-0.1.10/UNLICENSE %{buildroot}/usr/share/package-licenses/rustc/ff007ce11f3ff7964f1a5b04202c4e95b5c82c85 || :
@@ -1250,9 +1268,6 @@ cp %{_builddir}/rustc-%{version}-src/vendor/regex-automata/UNLICENSE %{buildroot
 cp %{_builddir}/rustc-%{version}-src/vendor/regex-syntax-0.6.26/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/regex-syntax-0.6.26/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9f3c36d2b7d381d9cf382a00166f3fbd06783636 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/regex-syntax-0.6.26/src/unicode_tables/LICENSE-UNICODE %{buildroot}/usr/share/package-licenses/rustc/68d12a03b339648117165b9c021b93f26974d6f6 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/regex-syntax-0.6.28/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/regex-syntax-0.6.28/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9f3c36d2b7d381d9cf382a00166f3fbd06783636 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/regex-syntax-0.6.28/src/unicode_tables/LICENSE-UNICODE %{buildroot}/usr/share/package-licenses/rustc/68d12a03b339648117165b9c021b93f26974d6f6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/regex-syntax-0.6.29/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/regex-syntax-0.6.29/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9f3c36d2b7d381d9cf382a00166f3fbd06783636 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/regex-syntax-0.6.29/src/unicode_tables/LICENSE-UNICODE %{buildroot}/usr/share/package-licenses/rustc/68d12a03b339648117165b9c021b93f26974d6f6 || :
@@ -1263,14 +1278,14 @@ cp %{_builddir}/rustc-%{version}-src/vendor/regex/LICENSE-APACHE %{buildroot}/us
 cp %{_builddir}/rustc-%{version}-src/vendor/regex/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9f3c36d2b7d381d9cf382a00166f3fbd06783636 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/regex/src/testdata/LICENSE %{buildroot}/usr/share/package-licenses/rustc/553e82bef8637312393c95bc62e23e8f81fd9e47 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/region/LICENSE %{buildroot}/usr/share/package-licenses/rustc/b2cdde3e7016a8117c2689604440088180af6913 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/remove_dir_all/LICENCE-APACHE %{buildroot}/usr/share/package-licenses/rustc/8fd4530045d4f57b4a4447e19147f4e70286e3b3 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/remove_dir_all/LICENCE-MIT %{buildroot}/usr/share/package-licenses/rustc/1299388f703aa63092d01668958767dc0f0ef3a3 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rfc6979/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d9f5b2ee0b9f629b3b8a8969d90f2cf654e03a8 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rfc6979/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/6376baf29519261ce80f0994e4803a5339619fa5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rowan/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rowan/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rustc-build-sysroot/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rustc-build-sysroot/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/rustc-demangle-0.1.22/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/rustc-demangle-0.1.22/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rustc-demangle/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rustc-demangle/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rustc-hash/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
@@ -1288,26 +1303,25 @@ cp %{_builddir}/rustc-%{version}-src/vendor/rustc_version/LICENSE-APACHE %{build
 cp %{_builddir}/rustc-%{version}-src/vendor/rustc_version/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9a2b6b4ad55ec42cf19fc686c74668d3a6303ae7 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rustfix/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rustfix/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/06e36fc4352af6e270f84f85d34fb43387c0d947 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/rustix-0.37.11/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/rustix-0.37.11/LICENSE-Apache-2.0_WITH_LLVM-exception %{buildroot}/usr/share/package-licenses/rustc/f137043e018f2024e0414a9153ea728c203ae8e5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/rustix-0.37.11/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/rustix-0.37.20/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/rustix-0.37.20/LICENSE-Apache-2.0_WITH_LLVM-exception %{buildroot}/usr/share/package-licenses/rustc/f137043e018f2024e0414a9153ea728c203ae8e5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/rustix-0.37.20/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rustix-0.37.6/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rustix-0.37.6/LICENSE-Apache-2.0_WITH_LLVM-exception %{buildroot}/usr/share/package-licenses/rustc/f137043e018f2024e0414a9153ea728c203ae8e5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rustix-0.37.6/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/rustix-0.37.7/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/rustix-0.37.7/LICENSE-Apache-2.0_WITH_LLVM-exception %{buildroot}/usr/share/package-licenses/rustc/f137043e018f2024e0414a9153ea728c203ae8e5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/rustix-0.37.7/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rustix/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rustix/LICENSE-Apache-2.0_WITH_LLVM-exception %{buildroot}/usr/share/package-licenses/rustc/f137043e018f2024e0414a9153ea728c203ae8e5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rustix/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/rustversion/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/rustversion/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rustversion/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rusty-fork/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/rusty-fork/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/8dc371a451b9630ad353a5801255d8ca5a01d722 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/ruzstd/LICENSE %{buildroot}/usr/share/package-licenses/rustc/ab6bfaf50e69f7e45f4fa6314537319b1e76aa77 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/ryu-1.0.10/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
 cp %{_builddir}/rustc-%{version}-src/vendor/ryu-1.0.10/LICENSE-BOOST %{buildroot}/usr/share/package-licenses/rustc/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/ryu-1.0.12/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
-cp %{_builddir}/rustc-%{version}-src/vendor/ryu-1.0.12/LICENSE-BOOST %{buildroot}/usr/share/package-licenses/rustc/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/ryu-1.0.5/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
-cp %{_builddir}/rustc-%{version}-src/vendor/ryu-1.0.5/LICENSE-BOOST %{buildroot}/usr/share/package-licenses/rustc/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/ryu/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/ryu/LICENSE-BOOST %{buildroot}/usr/share/package-licenses/rustc/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/salsa-macros/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
@@ -1317,16 +1331,11 @@ cp %{_builddir}/rustc-%{version}-src/vendor/salsa/LICENSE-MIT %{buildroot}/usr/s
 cp %{_builddir}/rustc-%{version}-src/vendor/same-file/COPYING %{buildroot}/usr/share/package-licenses/rustc/dd445710e6e4caccc4f8a587a130eaeebe83f6f6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/same-file/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/2ad1215c12bd0a3492399dc438aa63084323c662 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/same-file/UNLICENSE %{buildroot}/usr/share/package-licenses/rustc/ff007ce11f3ff7964f1a5b04202c4e95b5c82c85 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/schannel-0.1.19/LICENSE.md %{buildroot}/usr/share/package-licenses/rustc/08381cf9c28c849a083290a141b9889f68aa475d || :
 cp %{_builddir}/rustc-%{version}-src/vendor/schannel/LICENSE.md %{buildroot}/usr/share/package-licenses/rustc/08381cf9c28c849a083290a141b9889f68aa475d || :
-cp %{_builddir}/rustc-%{version}-src/vendor/scoped-tls-1.0.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/scoped-tls-1.0.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/scoped-tls/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/scoped-tls/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/scopeguard/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/scopeguard/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/f498d95a48889a0b1432e420e6754881eff1d593 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/scratch/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
-cp %{_builddir}/rustc-%{version}-src/vendor/scratch/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/sec1/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/422e6fd980775f9997ed6735c28a14ad20c222e8 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/sec1/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/231ee75760ab6f2b314f3ef6a556bc68d82c0709 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/security-framework-sys/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
@@ -1334,35 +1343,35 @@ cp %{_builddir}/rustc-%{version}-src/vendor/security-framework-sys/LICENSE-MIT %
 cp %{_builddir}/rustc-%{version}-src/vendor/security-framework/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/security-framework/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/5becf37b1a9807dc865494df19859a5bf9fb2201 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/self_cell/LICENSE %{buildroot}/usr/share/package-licenses/rustc/7df059597099bb7dcf25d2a9aedfaf4465f72d8d || :
-cp %{_builddir}/rustc-%{version}-src/vendor/semver-1.0.12/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/semver-1.0.12/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/semver-1.0.16/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/semver-1.0.16/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/semver/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/semver/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/serde-1.0.152/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/serde-1.0.152/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/serde-1.0.156/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
+cp %{_builddir}/rustc-%{version}-src/vendor/serde-1.0.156/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/serde-1.0.160/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
+cp %{_builddir}/rustc-%{version}-src/vendor/serde-1.0.160/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/serde-value/COPYING %{buildroot}/usr/share/package-licenses/rustc/fb56a0a55d46380208e2912508618a623e5ddeff || :
 cp %{_builddir}/rustc-%{version}-src/vendor/serde/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/serde/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/serde_cbor/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/serde_cbor/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/f3664de17b3a5309003c1c75a9330b6b7b5866da || :
-cp %{_builddir}/rustc-%{version}-src/vendor/serde_derive-1.0.152/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/serde_derive-1.0.152/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/serde_derive-1.0.156/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
+cp %{_builddir}/rustc-%{version}-src/vendor/serde_derive-1.0.156/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/serde_derive-1.0.160/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
+cp %{_builddir}/rustc-%{version}-src/vendor/serde_derive-1.0.160/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/serde_derive/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/serde_derive/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/serde_ignored/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/serde_ignored/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/serde_json-1.0.81/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/serde_json-1.0.81/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/serde_json-1.0.85/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/serde_json-1.0.85/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/serde_json-1.0.91/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/serde_json-1.0.91/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/serde_json-1.0.96/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
+cp %{_builddir}/rustc-%{version}-src/vendor/serde_json-1.0.96/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/serde_json/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/serde_json/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/serde_repr/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/serde_repr/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/serde_repr/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/serde_spanned-0.6.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/serde_spanned-0.6.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/serde_spanned/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/serde_spanned/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/sha1/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/422e6fd980775f9997ed6735c28a14ad20c222e8 || :
@@ -1370,9 +1379,10 @@ cp %{_builddir}/rustc-%{version}-src/vendor/sha1/LICENSE-MIT %{buildroot}/usr/sh
 cp %{_builddir}/rustc-%{version}-src/vendor/sha1_smol/LICENSE %{buildroot}/usr/share/package-licenses/rustc/f9654b00d54b884770b29eb4de95426b899a4851 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/sha2-0.10.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/422e6fd980775f9997ed6735c28a14ad20c222e8 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/sha2-0.10.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/1741e5596832e62cd0791301fc9dcf4b9d0bc2c9 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/sha2-0.10.6/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/422e6fd980775f9997ed6735c28a14ad20c222e8 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/sha2-0.10.6/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/1741e5596832e62cd0791301fc9dcf4b9d0bc2c9 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/sha2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/422e6fd980775f9997ed6735c28a14ad20c222e8 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/sha2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/1741e5596832e62cd0791301fc9dcf4b9d0bc2c9 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/sharded-slab-0.1.1/LICENSE %{buildroot}/usr/share/package-licenses/rustc/f591e1908efe604899b6cdcf5716e96665852778 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/sharded-slab/LICENSE %{buildroot}/usr/share/package-licenses/rustc/f591e1908efe604899b6cdcf5716e96665852778 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/shell-escape/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/shell-escape/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9f3c36d2b7d381d9cf382a00166f3fbd06783636 || :
@@ -1385,6 +1395,7 @@ cp %{_builddir}/rustc-%{version}-src/vendor/signal-hook/LICENSE-MIT %{buildroot}
 cp %{_builddir}/rustc-%{version}-src/vendor/signature/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/422e6fd980775f9997ed6735c28a14ad20c222e8 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/signature/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/801a333ce75517a77b339823196b6b14f5df6605 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/similar/LICENSE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/siphasher/COPYING %{buildroot}/usr/share/package-licenses/rustc/89dd598543231b6010a8d57e5cd4f31331fe5364 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/sized-chunks/LICENCE.md %{buildroot}/usr/share/package-licenses/rustc/7c1853ff34974a6b19247c039a0f60e06438f877 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/slab/LICENSE %{buildroot}/usr/share/package-licenses/rustc/96f019e8abadc7a87b330a697504d874a1c06268 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/slice-group-by/LICENSE %{buildroot}/usr/share/package-licenses/rustc/078f087adf77f5f069ce72c0d56326b143beb438 || :
@@ -1393,8 +1404,8 @@ cp %{_builddir}/rustc-%{version}-src/vendor/smallvec/LICENSE-MIT %{buildroot}/us
 cp %{_builddir}/rustc-%{version}-src/vendor/smol_str/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/smol_str/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/snap/COPYING %{buildroot}/usr/share/package-licenses/rustc/9d3bcffa161b99a9aca541d34d9ef960c13f0116 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/socket2-0.4.1/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/socket2-0.4.1/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/snapbox-macros/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/snapbox/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/socket2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/socket2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/spdx-expression/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/rustc/adadb67a9875aeeac285309f1eab6e47d9ee08a7 || :
@@ -1421,10 +1432,10 @@ cp %{_builddir}/rustc-%{version}-src/vendor/strum_macros/LICENSE %{buildroot}/us
 cp %{_builddir}/rustc-%{version}-src/vendor/subtle/LICENSE %{buildroot}/usr/share/package-licenses/rustc/145c27c874c444c902ad2af6164fcc30231fa7a8 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/syn-1.0.102/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/syn-1.0.102/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/syn-1.0.107/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/syn-1.0.107/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/syn-1.0.109/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/syn-1.0.109/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/syn-2.0.15/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
+cp %{_builddir}/rustc-%{version}-src/vendor/syn-2.0.15/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/syn-2.0.8/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/syn-2.0.8/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/syn/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
@@ -1432,20 +1443,17 @@ cp %{_builddir}/rustc-%{version}-src/vendor/syn/LICENSE-MIT %{buildroot}/usr/sha
 cp %{_builddir}/rustc-%{version}-src/vendor/synstructure-0.12.6/LICENSE %{buildroot}/usr/share/package-licenses/rustc/df44885e4af4916bfd34b504a588891829de9b4e || :
 cp %{_builddir}/rustc-%{version}-src/vendor/synstructure/LICENSE %{buildroot}/usr/share/package-licenses/rustc/df44885e4af4916bfd34b504a588891829de9b4e || :
 cp %{_builddir}/rustc-%{version}-src/vendor/sysinfo/LICENSE %{buildroot}/usr/share/package-licenses/rustc/f83864fda2a313306dfb3de8b01a36830a057a46 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/tar-0.4.38/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/tar-0.4.38/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/tar/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/tar/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/target-lexicon/LICENSE %{buildroot}/usr/share/package-licenses/rustc/f137043e018f2024e0414a9153ea728c203ae8e5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/tempfile-3.3.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/tempfile-3.3.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/70693ba8757c4a17af68e39ab32e4e0d4a389416 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/tempfile/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/tempfile/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/70693ba8757c4a17af68e39ab32e4e0d4a389416 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/tendril/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/tendril/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/6fc7897021205e271da51720736b06f9b5df3538 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/term/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/term/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/84d2c544ebf5c18b313d1ebae8c2ac7cf1856f7d || :
-cp %{_builddir}/rustc-%{version}-src/vendor/termcolor-1.1.3/COPYING %{buildroot}/usr/share/package-licenses/rustc/dd445710e6e4caccc4f8a587a130eaeebe83f6f6 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/termcolor-1.1.3/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/4c8990add9180fc59efa5b0d8faf643c9709501e || :
-cp %{_builddir}/rustc-%{version}-src/vendor/termcolor-1.1.3/UNLICENSE %{buildroot}/usr/share/package-licenses/rustc/ff007ce11f3ff7964f1a5b04202c4e95b5c82c85 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/termcolor/COPYING %{buildroot}/usr/share/package-licenses/rustc/dd445710e6e4caccc4f8a587a130eaeebe83f6f6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/termcolor/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/4c8990add9180fc59efa5b0d8faf643c9709501e || :
 cp %{_builddir}/rustc-%{version}-src/vendor/termcolor/UNLICENSE %{buildroot}/usr/share/package-licenses/rustc/ff007ce11f3ff7964f1a5b04202c4e95b5c82c85 || :
@@ -1457,12 +1465,11 @@ cp %{_builddir}/rustc-%{version}-src/vendor/tester/LICENSE-APACHE %{buildroot}/u
 cp %{_builddir}/rustc-%{version}-src/vendor/tester/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/text-size/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/text-size/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/textwrap-0.11.0/LICENSE %{buildroot}/usr/share/package-licenses/rustc/70e36c2f54755e87728778c41ab4b809e5b0b502 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/textwrap/LICENSE %{buildroot}/usr/share/package-licenses/rustc/70e36c2f54755e87728778c41ab4b809e5b0b502 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/thiserror-1.0.38/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/thiserror-1.0.38/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/thiserror-impl-1.0.38/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/thiserror-impl-1.0.38/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/thiserror-1.0.39/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
+cp %{_builddir}/rustc-%{version}-src/vendor/thiserror-1.0.39/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/thiserror-impl-1.0.39/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
+cp %{_builddir}/rustc-%{version}-src/vendor/thiserror-impl-1.0.39/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/thiserror-impl/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/thiserror-impl/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/thiserror/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
@@ -1475,9 +1482,13 @@ cp %{_builddir}/rustc-%{version}-src/vendor/threadpool/LICENSE-APACHE %{buildroo
 cp %{_builddir}/rustc-%{version}-src/vendor/threadpool/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9f3c36d2b7d381d9cf382a00166f3fbd06783636 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/tikv-jemalloc-ctl/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/tikv-jemalloc-ctl/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/faac0082c31d2393fbbf4ebcc1011030cd34ddad || :
+cp %{_builddir}/rustc-%{version}-src/vendor/tikv-jemalloc-sys/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/tikv-jemalloc-sys/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/tikv-jemalloc-sys/jemalloc/COPYING %{buildroot}/usr/share/package-licenses/rustc/c797cef3f1b13a960a5119a084fb88529a924fd7 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/time-0.3.17/LICENSE-Apache %{buildroot}/usr/share/package-licenses/rustc/13f55d9b7b3a769d76eab5d4a096f7ff24a017be || :
-cp %{_builddir}/rustc-%{version}-src/vendor/time-0.3.17/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ffffe83fef2bd6576c95e851bc81e1f6a641d638 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/time-0.3.20/LICENSE-Apache %{buildroot}/usr/share/package-licenses/rustc/13f55d9b7b3a769d76eab5d4a096f7ff24a017be || :
+cp %{_builddir}/rustc-%{version}-src/vendor/time-0.3.20/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ffffe83fef2bd6576c95e851bc81e1f6a641d638 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/time-core-0.1.0/LICENSE-Apache %{buildroot}/usr/share/package-licenses/rustc/13f55d9b7b3a769d76eab5d4a096f7ff24a017be || :
+cp %{_builddir}/rustc-%{version}-src/vendor/time-core-0.1.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ffffe83fef2bd6576c95e851bc81e1f6a641d638 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/time-core/LICENSE-Apache %{buildroot}/usr/share/package-licenses/rustc/13f55d9b7b3a769d76eab5d4a096f7ff24a017be || :
 cp %{_builddir}/rustc-%{version}-src/vendor/time-core/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ffffe83fef2bd6576c95e851bc81e1f6a641d638 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/time-macros/LICENSE-Apache %{buildroot}/usr/share/package-licenses/rustc/13f55d9b7b3a769d76eab5d4a096f7ff24a017be || :
@@ -1489,39 +1500,42 @@ cp %{_builddir}/rustc-%{version}-src/vendor/tinytemplate/LICENSE-MIT %{buildroot
 cp %{_builddir}/rustc-%{version}-src/vendor/tinyvec/LICENSE-APACHE.md %{buildroot}/usr/share/package-licenses/rustc/47b573e3824cd5e02a1a3ae99e2735b49e0256e4 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/tinyvec/LICENSE-MIT.md %{buildroot}/usr/share/package-licenses/rustc/ee70bf5efb387a6c52c0f5cbea4122c6a74a57bb || :
 cp %{_builddir}/rustc-%{version}-src/vendor/tinyvec/LICENSE-ZLIB.md %{buildroot}/usr/share/package-licenses/rustc/59b5efd50c4508e7fa74828e7469187bbe5bd864 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/tinyvec_macros-0.1.0/LICENSE %{buildroot}/usr/share/package-licenses/rustc/86d193cb6b24df990cbbaf67c6a24fddbcb574c1 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/tinyvec_macros/LICENSE-APACHE.md %{buildroot}/usr/share/package-licenses/rustc/8cc042e8e4b82c5532c72172a1988a74a599d4b5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/tinyvec_macros/LICENSE-MIT.md %{buildroot}/usr/share/package-licenses/rustc/86d193cb6b24df990cbbaf67c6a24fddbcb574c1 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/tokio/LICENSE %{buildroot}/usr/share/package-licenses/rustc/0933483c6152c541cfc03feafed55788a5b17802 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/toml-0.5.7/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/toml-0.5.7/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/tokio/LICENSE %{buildroot}/usr/share/package-licenses/rustc/9e4ed0e5d74379ec227eefa28c8fbf66c964cf13 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/toml-0.5.11/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/toml-0.5.11/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/toml-0.5.9/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/toml-0.5.9/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/toml-0.7.4/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/toml-0.7.4/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/toml/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/toml/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/toml_datetime-0.6.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/toml_datetime-0.6.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/toml_datetime/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/toml_datetime/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/toml_edit-0.19.10/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/toml_edit-0.19.10/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/5c49326657f4bfcc54ecb92f1dbde442e7132a08 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/toml_edit/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/toml_edit/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/5c49326657f4bfcc54ecb92f1dbde442e7132a08 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/topological-sort/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/topological-sort/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/196660edea63568f9cf3c8721764032c4848db07 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/tracing-0.1.35/LICENSE %{buildroot}/usr/share/package-licenses/rustc/3c8e7847ca19c2bb00f4100c725810c04a1b56d6 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/tracing-attributes-0.1.22/LICENSE %{buildroot}/usr/share/package-licenses/rustc/3c8e7847ca19c2bb00f4100c725810c04a1b56d6 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/tracing-attributes-0.1.23/LICENSE %{buildroot}/usr/share/package-licenses/rustc/3c8e7847ca19c2bb00f4100c725810c04a1b56d6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/tracing-attributes/LICENSE %{buildroot}/usr/share/package-licenses/rustc/3c8e7847ca19c2bb00f4100c725810c04a1b56d6 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/tracing-core-0.1.28/LICENSE %{buildroot}/usr/share/package-licenses/rustc/3c8e7847ca19c2bb00f4100c725810c04a1b56d6 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/tracing-core-0.1.28/src/spin/LICENSE %{buildroot}/usr/share/package-licenses/rustc/0956f8ac49e23a546fb113f711d7cdc0c3e98c85 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/tracing-core/LICENSE %{buildroot}/usr/share/package-licenses/rustc/3c8e7847ca19c2bb00f4100c725810c04a1b56d6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/tracing-core/src/spin/LICENSE %{buildroot}/usr/share/package-licenses/rustc/0956f8ac49e23a546fb113f711d7cdc0c3e98c85 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/tracing-error/LICENSE %{buildroot}/usr/share/package-licenses/rustc/3c8e7847ca19c2bb00f4100c725810c04a1b56d6 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/tracing-log-0.1.2/LICENSE %{buildroot}/usr/share/package-licenses/rustc/3c8e7847ca19c2bb00f4100c725810c04a1b56d6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/tracing-log/LICENSE %{buildroot}/usr/share/package-licenses/rustc/3c8e7847ca19c2bb00f4100c725810c04a1b56d6 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/tracing-subscriber-0.3.3/LICENSE %{buildroot}/usr/share/package-licenses/rustc/3c8e7847ca19c2bb00f4100c725810c04a1b56d6 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/tracing-subscriber-0.3.16/LICENSE %{buildroot}/usr/share/package-licenses/rustc/3c8e7847ca19c2bb00f4100c725810c04a1b56d6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/tracing-subscriber/LICENSE %{buildroot}/usr/share/package-licenses/rustc/3c8e7847ca19c2bb00f4100c725810c04a1b56d6 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/tracing-tree-0.2.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/7c553125380a5b3bbd3b133b7627b33b95532f47 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/tracing-tree-0.2.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/fbfbf48d107ab8cb5e8ec4c4d7f0d1b07aa48d04 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/tracing-tree-0.2.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/7c553125380a5b3bbd3b133b7627b33b95532f47 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/tracing-tree-0.2.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/fbfbf48d107ab8cb5e8ec4c4d7f0d1b07aa48d04 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/tracing-tree/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/7c553125380a5b3bbd3b133b7627b33b95532f47 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/tracing-tree/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/fbfbf48d107ab8cb5e8ec4c4d7f0d1b07aa48d04 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/tracing/LICENSE %{buildroot}/usr/share/package-licenses/rustc/3c8e7847ca19c2bb00f4100c725810c04a1b56d6 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/triomphe/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/triomphe/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/b12c210e78112e40e89cc0e765a6335c6b4636b2 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/twox-hash/LICENSE.txt %{buildroot}/usr/share/package-licenses/rustc/5f75b8a81d45e888ea3c9edaef80bc613948614f || :
 cp %{_builddir}/rustc-%{version}-src/vendor/typed-arena/LICENSE %{buildroot}/usr/share/package-licenses/rustc/ceb1d1fb89e2305664554a8de9003d2283e50a8e || :
 cp %{_builddir}/rustc-%{version}-src/vendor/typenum-1.15.0/LICENSE %{buildroot}/usr/share/package-licenses/rustc/481e4be7d70c11ee3f6e04a59a0e5afccc551db2 || :
@@ -1538,23 +1552,14 @@ cp %{_builddir}/rustc-%{version}-src/vendor/unarray/LICENSE-APACHE %{buildroot}/
 cp %{_builddir}/rustc-%{version}-src/vendor/unarray/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/2c87153926f8a458cffc9a435e15571ba721c2fa || :
 cp %{_builddir}/rustc-%{version}-src/vendor/unicase/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/unicase/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/576a5b2a10d97104f8fdc9dfecb7f7493edff30f || :
-cp %{_builddir}/rustc-%{version}-src/vendor/unicode-bidi-0.3.10/COPYRIGHT %{buildroot}/usr/share/package-licenses/rustc/871b9912ab96cf7d79cb8ae83ca0b08cd5d0cbfd || :
-cp %{_builddir}/rustc-%{version}-src/vendor/unicode-bidi-0.3.10/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/unicode-bidi-0.3.10/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/60c3522081bf15d7ac1d4c5a63de425ef253e87a || :
-cp %{_builddir}/rustc-%{version}-src/vendor/unicode-bidi-0.3.4/COPYRIGHT %{buildroot}/usr/share/package-licenses/rustc/871b9912ab96cf7d79cb8ae83ca0b08cd5d0cbfd || :
-cp %{_builddir}/rustc-%{version}-src/vendor/unicode-bidi-0.3.4/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/unicode-bidi-0.3.4/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/60c3522081bf15d7ac1d4c5a63de425ef253e87a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/unicode-bidi/COPYRIGHT %{buildroot}/usr/share/package-licenses/rustc/871b9912ab96cf7d79cb8ae83ca0b08cd5d0cbfd || :
 cp %{_builddir}/rustc-%{version}-src/vendor/unicode-bidi/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/unicode-bidi/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/60c3522081bf15d7ac1d4c5a63de425ef253e87a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/unicode-ident-1.0.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/unicode-ident-1.0.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/unicode-ident-1.0.5/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/unicode-ident-1.0.5/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/unicode-ident-1.0.5/LICENSE-UNICODE %{buildroot}/usr/share/package-licenses/rustc/583a5eebcf6119730bd96922e8a0faecf7faf720 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/unicode-ident-1.0.6/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/unicode-ident-1.0.6/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/unicode-ident-1.0.6/LICENSE-UNICODE %{buildroot}/usr/share/package-licenses/rustc/583a5eebcf6119730bd96922e8a0faecf7faf720 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/unicode-ident-1.0.8/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
+cp %{_builddir}/rustc-%{version}-src/vendor/unicode-ident-1.0.8/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/unicode-ident-1.0.8/LICENSE-UNICODE %{buildroot}/usr/share/package-licenses/rustc/583a5eebcf6119730bd96922e8a0faecf7faf720 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/unicode-ident/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/unicode-ident/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/unicode-ident/LICENSE-UNICODE %{buildroot}/usr/share/package-licenses/rustc/583a5eebcf6119730bd96922e8a0faecf7faf720 || :
@@ -1579,10 +1584,12 @@ cp %{_builddir}/rustc-%{version}-src/vendor/unicode_categories/LICENSE-APACHE %{
 cp %{_builddir}/rustc-%{version}-src/vendor/unicode_categories/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/d27ef3ee8c433e848ca41075d018a1ad707e3c49 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/unified-diff/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/unified-diff/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/url-2.2.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/url-2.2.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/738188f5fed28a950b0fede659706238ec35f8bb || :
+cp %{_builddir}/rustc-%{version}-src/vendor/url-2.3.1/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/url-2.3.1/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/a81399b7c3ec2d4619848fd59c11d21211fc3b86 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/url/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/url/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/a81399b7c3ec2d4619848fd59c11d21211fc3b86 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/utf-8/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
+cp %{_builddir}/rustc-%{version}-src/vendor/utf-8/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/utf8parse/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/6e5c4711bcae04967d7f5b5e01cf56ae03bebe7a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/utf8parse/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/93074692b8a28bef1743c44a9e5b97b1401c0d09 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/uuid/COPYRIGHT %{buildroot}/usr/share/package-licenses/rustc/e5e5847604e0df7da8ec27a89a6a565bd1e84a91 || :
@@ -1646,63 +1653,48 @@ cp %{_builddir}/rustc-%{version}-src/vendor/windows-sys-0.45.0/license-apache-2.
 cp %{_builddir}/rustc-%{version}-src/vendor/windows-sys-0.45.0/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows-sys/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows-sys/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/windows-targets-0.42.1/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/windows-targets-0.42.1/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows-targets-0.42.2/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows-targets-0.42.2/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/windows-targets-0.48.0/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/windows-targets-0.48.0/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows-targets/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows-targets/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows-tokens/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows-tokens/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/windows_aarch64_gnullvm-0.42.1/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/windows_aarch64_gnullvm-0.42.1/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_aarch64_gnullvm-0.42.2/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_aarch64_gnullvm-0.42.2/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_aarch64_gnullvm/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_aarch64_gnullvm/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/windows_aarch64_msvc-0.42.1/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/windows_aarch64_msvc-0.42.1/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_aarch64_msvc-0.42.2/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_aarch64_msvc-0.42.2/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_aarch64_msvc/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_aarch64_msvc/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/windows_i686_gnu-0.42.1/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/windows_i686_gnu-0.42.1/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_i686_gnu-0.42.2/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_i686_gnu-0.42.2/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_i686_gnu/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_i686_gnu/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/windows_i686_msvc-0.42.1/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/windows_i686_msvc-0.42.1/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_i686_msvc-0.42.2/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_i686_msvc-0.42.2/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_i686_msvc/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_i686_msvc/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/windows_x86_64_gnu-0.42.1/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/windows_x86_64_gnu-0.42.1/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_x86_64_gnu-0.42.2/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_x86_64_gnu-0.42.2/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_x86_64_gnu/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_x86_64_gnu/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/windows_x86_64_gnullvm-0.42.1/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/windows_x86_64_gnullvm-0.42.1/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_x86_64_gnullvm-0.42.2/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_x86_64_gnullvm-0.42.2/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_x86_64_gnullvm/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_x86_64_gnullvm/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/windows_x86_64_msvc-0.42.1/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/windows_x86_64_msvc-0.42.1/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_x86_64_msvc-0.42.2/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_x86_64_msvc-0.42.2/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_x86_64_msvc/license-apache-2.0 %{buildroot}/usr/share/package-licenses/rustc/a3b3a65335e78bde163f84d599fa899776552994 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/windows_x86_64_msvc/license-mit %{buildroot}/usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/winnow-0.4.6/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/c0955b5351b1dcafdd0b9bb2d7e84fe0e3d731ca || :
 cp %{_builddir}/rustc-%{version}-src/vendor/winnow/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/c0955b5351b1dcafdd0b9bb2d7e84fe0e3d731ca || :
 cp %{_builddir}/rustc-%{version}-src/vendor/write-json/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/write-json/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/xattr-0.2.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
-cp %{_builddir}/rustc-%{version}-src/vendor/xattr-0.2.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/70693ba8757c4a17af68e39ab32e4e0d4a389416 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/xattr/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/xattr/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/70693ba8757c4a17af68e39ab32e4e0d4a389416 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/xshell/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/422e6fd980775f9997ed6735c28a14ad20c222e8 || :
@@ -1794,8 +1786,8 @@ rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libLLVM-16-rust-1.71.0-stable.so
-/usr/lib64/libLLVM-16-rust-1.71.0-stable.so
+/V3/usr/lib64/libLLVM-16-rust-1.72.0-stable.so
+/usr/lib64/libLLVM-16-rust-1.72.0-stable.so
 
 %files doc
 %defattr(0644,root,root,0755)
@@ -1840,7 +1832,6 @@ rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 /usr/share/package-licenses/rustc/08381cf9c28c849a083290a141b9889f68aa475d
 /usr/share/package-licenses/rustc/088830dcb78eba1a2052df69bd5cba5445e8f2d7
 /usr/share/package-licenses/rustc/08f3377a1297c68d4143cd4407266eeb09ac0725
-/usr/share/package-licenses/rustc/0933483c6152c541cfc03feafed55788a5b17802
 /usr/share/package-licenses/rustc/094651333226eb0bd70c5f9f3210cdf9bfbb8077
 /usr/share/package-licenses/rustc/0956f8ac49e23a546fb113f711d7cdc0c3e98c85
 /usr/share/package-licenses/rustc/0a1e89ac22450cb0311baa2613bc21b7131b321f
@@ -1854,25 +1845,21 @@ rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 /usr/share/package-licenses/rustc/108bb98fdf8f27765ea240d80481be8362175ca7
 /usr/share/package-licenses/rustc/11f0f1bee61ba6393c3dc7aefee7b92b604ff6c0
 /usr/share/package-licenses/rustc/11ff082389982b8168263850db69199065f2028d
-/usr/share/package-licenses/rustc/1299388f703aa63092d01668958767dc0f0ef3a3
 /usr/share/package-licenses/rustc/13f55d9b7b3a769d76eab5d4a096f7ff24a017be
 /usr/share/package-licenses/rustc/144111aa0f14ef5a181326683aa9ebbd9252bca6
 /usr/share/package-licenses/rustc/145c27c874c444c902ad2af6164fcc30231fa7a8
 /usr/share/package-licenses/rustc/1741e5596832e62cd0791301fc9dcf4b9d0bc2c9
-/usr/share/package-licenses/rustc/17fe2c1c3a52b16b4063993fd998fc0e02e1f6a9
 /usr/share/package-licenses/rustc/18d7fe3c54698817feec1f2e04a9d5a0f046a80c
 /usr/share/package-licenses/rustc/196660edea63568f9cf3c8721764032c4848db07
-/usr/share/package-licenses/rustc/197cb40dc96ded1e036d13ef67fdc7a758ca1388
 /usr/share/package-licenses/rustc/1a00693a4e6240a4d040d1a1f76efaf50f20b8dd
 /usr/share/package-licenses/rustc/1a00a507fb89bb0018c092d6835077d541e76dc2
 /usr/share/package-licenses/rustc/1ae671f98444c3acb906a48b5c3640a28daf8de8
-/usr/share/package-licenses/rustc/1b0e913d41a66c988376898aa995d6c2f45bb50c
 /usr/share/package-licenses/rustc/1c1888896bf71323016b90b62d1c247307ceb727
 /usr/share/package-licenses/rustc/1d340a67e042bbd5644b5c4be4c79c660f4da8b7
 /usr/share/package-licenses/rustc/1d47c63586fe3be7f228cff1ab0c029b53741875
 /usr/share/package-licenses/rustc/1dd6d49e5106f6f8b939f5da70c1e0d144ca85d2
 /usr/share/package-licenses/rustc/1e0b08e7a2124c67c42261ac819e2340a2dd912c
-/usr/share/package-licenses/rustc/1e5fd56e72eb7e007f7be1ca11be95ac2febab25
+/usr/share/package-licenses/rustc/1ed710abaa8e6f1039a65ee19db6b19804514a75
 /usr/share/package-licenses/rustc/2111f90a2fa5afba10ae753c5ca31a1d8080f597
 /usr/share/package-licenses/rustc/218ff5d31a950e718669755000fd08bf864a50ab
 /usr/share/package-licenses/rustc/2243f7a86daaa727d34d92e987a741036f288464
@@ -1967,7 +1954,6 @@ rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 /usr/share/package-licenses/rustc/64a8c11fd0f3068e743bfc681bcbef4f50a6b779
 /usr/share/package-licenses/rustc/64c559936f510f05a0a6d310c5acba2a9f490441
 /usr/share/package-licenses/rustc/64e8197cb5ae680fcf996cc0ac8760e9f1e2e3a6
-/usr/share/package-licenses/rustc/655a437377cc2780990746fe2492fa16764df083
 /usr/share/package-licenses/rustc/66933e63e70616b43f1dc60340491f8e050eedfd
 /usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945
 /usr/share/package-licenses/rustc/689ec0681815ecc32bee639c68e7740add7bd301
@@ -2022,6 +2008,7 @@ rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 /usr/share/package-licenses/rustc/88b9c8fca2f64284b46f0dd05f37329ae8a7a6a8
 /usr/share/package-licenses/rustc/88f07dbef13f8f0371c411711cdf9c00ffde23d5
 /usr/share/package-licenses/rustc/892b34f7865d90a6f949f50d95e49625a10bc7f0
+/usr/share/package-licenses/rustc/89dd598543231b6010a8d57e5cd4f31331fe5364
 /usr/share/package-licenses/rustc/8af372ad1edbed2cfaf0e79d25f7136ec6e55b47
 /usr/share/package-licenses/rustc/8b54360a0e7f4118396ecf5e1bb6ec7a277bb596
 /usr/share/package-licenses/rustc/8b669947924cf80af81fdb30a9d77ca50a46503f
@@ -2031,7 +2018,6 @@ rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 /usr/share/package-licenses/rustc/8e31d76c1073644a6e761836ac34a590fee47a83
 /usr/share/package-licenses/rustc/8f178d4cc55689ebdd562cabb1282e33bf8f32fe
 /usr/share/package-licenses/rustc/8f1a2051e677d0b449c6959db032c1a218e0957f
-/usr/share/package-licenses/rustc/8fd4530045d4f57b4a4447e19147f4e70286e3b3
 /usr/share/package-licenses/rustc/8fe88f09d35c6054e0a780a793833c16fb888168
 /usr/share/package-licenses/rustc/91abce61ea0c1c313bb5ba31f04196490960a479
 /usr/share/package-licenses/rustc/92170cdc034b2ff819323ff670d3b7266c8bffcd
@@ -2056,6 +2042,7 @@ rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 /usr/share/package-licenses/rustc/9c6e81caeb170dd5501d39895df9efb657c3c86b
 /usr/share/package-licenses/rustc/9d338e3eeb99b4826587f18f5cece7706df97bcb
 /usr/share/package-licenses/rustc/9d3bcffa161b99a9aca541d34d9ef960c13f0116
+/usr/share/package-licenses/rustc/9e4ed0e5d74379ec227eefa28c8fbf66c964cf13
 /usr/share/package-licenses/rustc/9ec2af04328d0eb6ec89ca6d75156ffc7aecf869
 /usr/share/package-licenses/rustc/9f3c36d2b7d381d9cf382a00166f3fbd06783636
 /usr/share/package-licenses/rustc/a00165152c82ea55b9fc254890dc8860c25e3bb6
@@ -2070,7 +2057,6 @@ rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 /usr/share/package-licenses/rustc/a74c5e048f9ed570eb892f81ca5daf05936475b0
 /usr/share/package-licenses/rustc/a81399b7c3ec2d4619848fd59c11d21211fc3b86
 /usr/share/package-licenses/rustc/a85d18aa7f519b0704016252f50e3286d106c67c
-/usr/share/package-licenses/rustc/a88eaffea57a51eedb5291e0d55a959df7659458
 /usr/share/package-licenses/rustc/a8ab3e6caa5e7af0ec9235d5db800ace830c0a38
 /usr/share/package-licenses/rustc/a97a2888bca904918b3b9ec008fde1d6e9905a6d
 /usr/share/package-licenses/rustc/ab6bfaf50e69f7e45f4fa6314537319b1e76aa77
@@ -2111,6 +2097,7 @@ rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 /usr/share/package-licenses/rustc/c1e917ff061859e1db80a17a26071569d0e9ee4c
 /usr/share/package-licenses/rustc/c1f96d6a54446beefad79ef49b3c123c597b7a40
 /usr/share/package-licenses/rustc/c2823768370eacadd57325e509a10bd592996130
+/usr/share/package-licenses/rustc/c371f0a7cbb203643d88566665a452f96bf1ab86
 /usr/share/package-licenses/rustc/c4f8de16c29dc84a94d610b716fb1c9c7f143582
 /usr/share/package-licenses/rustc/c56bd0668edca4d06b6cd881d4d2839da53058cd
 /usr/share/package-licenses/rustc/c61640f6c218caf86d1b8072e09668a8362dba04
@@ -2128,13 +2115,13 @@ rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 /usr/share/package-licenses/rustc/d27ef3ee8c433e848ca41075d018a1ad707e3c49
 /usr/share/package-licenses/rustc/d3f4001d9de83a122956c9195d73e2507bf6c533
 /usr/share/package-licenses/rustc/d5c0c6beed5e77d571189516c53cf05f1e58d9ca
-/usr/share/package-licenses/rustc/d613c3b2367acb865a03150ed36c5610f123e378
 /usr/share/package-licenses/rustc/d678d723983cdba8c0182749676fe0ac87e74173
 /usr/share/package-licenses/rustc/d74ad13f1402c35008f22bc588a6b8199ed164d3
 /usr/share/package-licenses/rustc/d79062af10a33188d4a74d976323845a2cf9023d
 /usr/share/package-licenses/rustc/d7922ed0153e53eb7d63ea3fcae1040472c67679
 /usr/share/package-licenses/rustc/d9cbbade41968e40611db3140de155e00b8bc8d3
 /usr/share/package-licenses/rustc/db1f866b29c6a191752c7c5924b7572cdbc47c34
+/usr/share/package-licenses/rustc/db8bf4070b91bbabe0f14d1c15f0be86793fab6a
 /usr/share/package-licenses/rustc/dcbc6323f7069aaa19c938e99a5391a1e5348e33
 /usr/share/package-licenses/rustc/dd2f4bd6d87fe2780fc8e4135ce7dac6ff0b33ee
 /usr/share/package-licenses/rustc/dd445710e6e4caccc4f8a587a130eaeebe83f6f6
@@ -2168,10 +2155,8 @@ rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 /usr/share/package-licenses/rustc/f172b445b210221077f7ef4979f22cd63e1d1970
 /usr/share/package-licenses/rustc/f1aabefffd4dda89e4e1a9bc01cf727cbb3c562d
 /usr/share/package-licenses/rustc/f24fdeaeee4c59532e32b7c6517d34c8927526fe
-/usr/share/package-licenses/rustc/f2515ca1c978fa1b1d6e13a8a9ae63a36a2d52cd
 /usr/share/package-licenses/rustc/f3664de17b3a5309003c1c75a9330b6b7b5866da
 /usr/share/package-licenses/rustc/f3b0197751808b8dbd31f85c64f9ebd011c4d0f5
-/usr/share/package-licenses/rustc/f3c8bb7bb24aeedb5f1de6ecc8f3303eecf654e7
 /usr/share/package-licenses/rustc/f4359b9da55a3b9e4d9513eb79cacf125fb49e7b
 /usr/share/package-licenses/rustc/f498d95a48889a0b1432e420e6754881eff1d593
 /usr/share/package-licenses/rustc/f591e1908efe604899b6cdcf5716e96665852778
