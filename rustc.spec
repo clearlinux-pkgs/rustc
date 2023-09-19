@@ -6,11 +6,11 @@
 # Source0 file verified with key 0x85AB96E6FA1BE5FE (rust-key@rust-lang.org)
 #
 Name     : rustc
-Version  : 1.72.0
-Release  : 117
-URL      : https://static.rust-lang.org/dist/rustc-1.72.0-src.tar.gz
-Source0  : https://static.rust-lang.org/dist/rustc-1.72.0-src.tar.gz
-Source1  : https://static.rust-lang.org/dist/rustc-1.72.0-src.tar.gz.asc
+Version  : 1.72.1
+Release  : 118
+URL      : https://static.rust-lang.org/dist/rustc-1.72.1-src.tar.gz
+Source0  : https://static.rust-lang.org/dist/rustc-1.72.1-src.tar.gz
+Source1  : https://static.rust-lang.org/dist/rustc-1.72.1-src.tar.gz.asc
 Summary  : unknown
 Group    : Development/Tools
 License  : 0BSD Apache-2.0 BSD-2-Clause BSD-3-Clause BSD-4-Clause BSD-4-Clause-UC BSL-1.0 CC-BY-SA-4.0 CC0-1.0 GPL-2.0 GPL-3.0 HPND ICU ISC LGPL-2.1 MIT MPL-2.0 MPL-2.0-no-copyleft-exception OFL-1.1 OpenSSL Unicode-DFS-2016 Unlicense Zlib
@@ -136,14 +136,14 @@ man components for the rustc package.
 
 
 %prep
-%setup -q -n rustc-1.72.0-src
-cd %{_builddir}/rustc-1.72.0-src
+%setup -q -n rustc-1.72.1-src
+cd %{_builddir}/rustc-1.72.1-src
 %patch -P 1 -p1
 %patch -P 2 -p1
 %patch -P 3 -p1
 %patch -P 4 -p1
 pushd ..
-cp -a rustc-1.72.0-src buildavx2
+cp -a rustc-1.72.1-src buildavx2
 popd
 
 %build
@@ -193,7 +193,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1692907137
+export SOURCE_DATE_EPOCH=1695156816
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -256,7 +256,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1692907137
+export SOURCE_DATE_EPOCH=1695156816
 rm -rf %{buildroot}
 ## install_prepend content
 export RUST_BACKTRACE=1
@@ -364,6 +364,7 @@ cp %{_builddir}/rustc-%{version}-src/vendor/aho-corasick/UNLICENSE %{buildroot}/
 cp %{_builddir}/rustc-%{version}-src/vendor/always-assert/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/always-assert/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/ammonia/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/ammonia/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/e6c3cd8165498c27af60e5237edfb87eebeff337 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/android-tzdata/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/db8bf4070b91bbabe0f14d1c15f0be86793fab6a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/android-tzdata/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/2c87153926f8a458cffc9a435e15571ba721c2fa || :
 cp %{_builddir}/rustc-%{version}-src/vendor/android_system_properties/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/a8ab3e6caa5e7af0ec9235d5db800ace830c0a38 || :
@@ -599,6 +600,7 @@ cp %{_builddir}/rustc-%{version}-src/vendor/datafrog/LICENSE-APACHE %{buildroot}
 cp %{_builddir}/rustc-%{version}-src/vendor/datafrog/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/der/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/422e6fd980775f9997ed6735c28a14ad20c222e8 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/der/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/61ba41e6d86b95dc1974896faa04ee63070e9a6e || :
+cp %{_builddir}/rustc-%{version}-src/vendor/derive-new/LICENSE %{buildroot}/usr/share/package-licenses/rustc/489ec24994081a530a3567280ff73e4145f868d3 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/derive_arbitrary/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/derive_arbitrary/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/b12c210e78112e40e89cc0e765a6335c6b4636b2 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/derive_more/LICENSE %{buildroot}/usr/share/package-licenses/rustc/c1e917ff061859e1db80a17a26071569d0e9ee4c || :
@@ -1072,6 +1074,7 @@ cp %{_builddir}/rustc-%{version}-src/vendor/miow/LICENSE-MIT %{buildroot}/usr/sh
 cp %{_builddir}/rustc-%{version}-src/vendor/new_debug_unreachable/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/108bb98fdf8f27765ea240d80481be8362175ca7 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/nix/LICENSE %{buildroot}/usr/share/package-licenses/rustc/a6fe1503554eb18138838c526d150f58fc104133 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/nohash-hasher/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/2b8b815229aa8a61e483fb4ba0588b8b6c491890 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/nohash-hasher/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9c09d6dfeace5b722e4745f3c827221c9ce2685a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/nom/LICENSE %{buildroot}/usr/share/package-licenses/rustc/27ea6989d4f34b7b944eb884410a31ae20d11686 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/normalize-line-endings/LICENSE %{buildroot}/usr/share/package-licenses/rustc/92170cdc034b2ff819323ff670d3b7266c8bffcd || :
 cp %{_builddir}/rustc-%{version}-src/vendor/ntapi/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/95606c72511bbbbeeecbdb16101d614a4680e622 || :
@@ -1405,7 +1408,9 @@ cp %{_builddir}/rustc-%{version}-src/vendor/smol_str/LICENSE-APACHE %{buildroot}
 cp %{_builddir}/rustc-%{version}-src/vendor/smol_str/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/ce3a2603094e799f42ce99c40941544dfcc5c4a5 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/snap/COPYING %{buildroot}/usr/share/package-licenses/rustc/9d3bcffa161b99a9aca541d34d9ef960c13f0116 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/snapbox-macros/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/snapbox-macros/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/bf9f8286c161962263ea1d7e39a26260a82668c0 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/snapbox/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/snapbox/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/bf9f8286c161962263ea1d7e39a26260a82668c0 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/socket2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/socket2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3b042d3d971924ec0296687efd50dbe08b734976 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/spdx-expression/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/rustc/adadb67a9875aeeac285309f1eab6e47d9ee08a7 || :
@@ -1786,8 +1791,8 @@ rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libLLVM-16-rust-1.72.0-stable.so
-/usr/lib64/libLLVM-16-rust-1.72.0-stable.so
+/V3/usr/lib64/libLLVM-16-rust-1.72.1-stable.so
+/usr/lib64/libLLVM-16-rust-1.72.1-stable.so
 
 %files doc
 %defattr(0644,root,root,0755)
@@ -1912,6 +1917,7 @@ rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 /usr/share/package-licenses/rustc/481e4be7d70c11ee3f6e04a59a0e5afccc551db2
 /usr/share/package-licenses/rustc/483d1c97dc79ef8741eae507897ca39cfe19da36
 /usr/share/package-licenses/rustc/484cc3dce0ffeb128e73bde74b02603e66d7f13c
+/usr/share/package-licenses/rustc/489ec24994081a530a3567280ff73e4145f868d3
 /usr/share/package-licenses/rustc/48b257274b2583eef9dcce3a53db92ff0020b73e
 /usr/share/package-licenses/rustc/4996b598ae000c234f174a265a8ff9a4885428ec
 /usr/share/package-licenses/rustc/4ad37fc99fecc5cda018043361f5b12e350e4052
@@ -2039,6 +2045,7 @@ rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 /usr/share/package-licenses/rustc/9a2b6b4ad55ec42cf19fc686c74668d3a6303ae7
 /usr/share/package-licenses/rustc/9a7f1452f416deeed2010a42830d05b856c17660
 /usr/share/package-licenses/rustc/9b76a43221967e5c55c4183406e1ebc7417da61d
+/usr/share/package-licenses/rustc/9c09d6dfeace5b722e4745f3c827221c9ce2685a
 /usr/share/package-licenses/rustc/9c6e81caeb170dd5501d39895df9efb657c3c86b
 /usr/share/package-licenses/rustc/9d338e3eeb99b4826587f18f5cece7706df97bcb
 /usr/share/package-licenses/rustc/9d3bcffa161b99a9aca541d34d9ef960c13f0116
@@ -2088,6 +2095,7 @@ rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 /usr/share/package-licenses/rustc/bec4b6109619406bef325f0e2c9cd624b3143be0
 /usr/share/package-licenses/rustc/bee28506691ec4e9291da8a55a450cb5304d3f5d
 /usr/share/package-licenses/rustc/bf177694b0b9aa2cf22b5facb734f10a8e3388f5
+/usr/share/package-licenses/rustc/bf9f8286c161962263ea1d7e39a26260a82668c0
 /usr/share/package-licenses/rustc/bfc2b026231b7aca6db90de3471e76dbb94e9c24
 /usr/share/package-licenses/rustc/c01c212bdf3925189f673e2081b44094023860ea
 /usr/share/package-licenses/rustc/c037f9fc48de42630cb62476823179cab2e9c8dd
@@ -2136,6 +2144,7 @@ rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 /usr/share/package-licenses/rustc/e53f3ac948fb51542695895a33d0e009227afd30
 /usr/share/package-licenses/rustc/e5c5af8ddef19fbd109a06b28365d6ab491c5a38
 /usr/share/package-licenses/rustc/e5e5847604e0df7da8ec27a89a6a565bd1e84a91
+/usr/share/package-licenses/rustc/e6c3cd8165498c27af60e5237edfb87eebeff337
 /usr/share/package-licenses/rustc/e6d32072ef5f584a805b429ecbd4eec428316dde
 /usr/share/package-licenses/rustc/e7d2d407ad50df8f46b552e5e30ebf67c60b41f2
 /usr/share/package-licenses/rustc/e81567c196622efa36b46c5fd53cde741aaf0993
