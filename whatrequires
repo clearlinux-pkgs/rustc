@@ -2,6 +2,7 @@
 clamav
 librsvg
 mozjs102
+mozjs115
 mozjs91
 pypi-cryptography
 pypi-maturin
