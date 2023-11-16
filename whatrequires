@@ -4,11 +4,11 @@ librsvg
 mozjs102
 mozjs115
 mozjs91
+pypi-bcrypt
 pypi-cryptography
 pypi-maturin
 pypi-rpds_py
 pypi-safetensors
-pypi-tokenizers
 ripgrep
 rustc
 suricata
