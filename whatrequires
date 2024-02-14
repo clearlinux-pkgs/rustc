@@ -8,7 +8,7 @@ pypi-bcrypt
 pypi-cryptography
 pypi-maturin
 pypi-rpds_py
-pypi-safetensors
+pypi-tokenizers
 ripgrep
 rustc
 suricata
