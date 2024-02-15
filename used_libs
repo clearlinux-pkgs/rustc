@@ -3,8 +3,8 @@ libc.so.6
 libcrypto.so.3
 libgcc_s.so.1
 libm.so.6
-librustc_driver-99eefc8cbd7492ac.so
+librustc_driver-0995b8a0ce211043.so
 libssl.so.3
-libstd-2ee97cb2f3dd13bc.so
-libtest-ca6bd5f15a8c0a17.so
+libstd-bd7e187550fdacd6.so
+libtest-f02479786ebd5aa3.so
 libz.so.1
