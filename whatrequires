@@ -1,6 +1,7 @@
 # This file contains recursive sources that require this package
 clamav
 librsvg
+mesa
 mozjs102
 mozjs115
 mozjs91

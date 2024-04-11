@@ -1,0 +1,4 @@
+/builddir/build/BUILDROOT/rustc-1.77.2-124.x86_64/etc/:
+/builddir/build/BUILDROOT/rustc-1.77.2-124.x86_64/etc/bash_completion.d:
+bash_completion.d
+cargo
