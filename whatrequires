@@ -11,5 +11,6 @@ pypi-maturin
 pypi-rpds_py
 pypi-tokenizers
 ripgrep
+rust-bindgen
 rustc
 suricata
