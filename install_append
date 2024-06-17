@@ -1,6 +1,4 @@
 mkdir -p %{buildroot}/usr/lib64/
-mkdir -p %{buildroot}-v3/usr/lib64/
 mv %{buildroot}/usr/lib/*.so %{buildroot}/usr/lib64/
-mv %{buildroot}-v3/usr/lib/*.so %{buildroot}-v3/usr/lib64/
+rm -f %{buildroot}/usr/lib/rustlib/i686-unknown-linux-gnu/lib/*.so
 rm -f %{buildroot}/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
-rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so

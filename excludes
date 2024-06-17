@@ -5,6 +5,7 @@
 /usr/lib/rustlib/manifest-clippy-preview
 /usr/lib/rustlib/manifest-rust-analysis-x86_64-unknown-linux-gnu
 /usr/lib/rustlib/manifest-rust-demangler-preview
+/usr/lib/rustlib/manifest-rust-std-i686-unknown-linux-gnu
 /usr/lib/rustlib/manifest-rust-std-x86_64-unknown-linux-gnu
 /usr/lib/rustlib/manifest-rustfmt-preview
 /usr/lib/rustlib/manifest-rustc

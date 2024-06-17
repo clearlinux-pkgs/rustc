@@ -1,2 +1,6 @@
 export RUST_BACKTRACE=1
 export RUST_COMPILER_RT_ROOT=%{builddir}/compiler-rt
+# x.py handles the m32/64 flags so remove ours to avoid conflicts
+# as we aren't doing a special 32bit only build like normal
+export CFLAGS="`echo "$CFLAGS" | sed s/-m64//`"
+export CXXFLAGS="$CFLAGS"

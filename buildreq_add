@@ -1,7 +1,22 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
 cmake
+gcc-dev32
+glibc-dev32
+libedit-dev
+libffi-dev
+libtirpc-dev
+libxml2-dev
+libxml2-dev32
 llvm
 llvm-staticdev
+llvm-staticdev32
+ncurses-dev
+ncurses-dev32
 ninja
+python3-dev
 rustc
+zlib-dev
+zlib-dev32
+zstd-dev
+zstd-dev32

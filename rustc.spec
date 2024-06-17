@@ -9,7 +9,7 @@
 #
 Name     : rustc
 Version  : 1.79.0
-Release  : 126
+Release  : 128
 URL      : https://static.rust-lang.org/dist/rustc-1.79.0-src.tar.gz
 Source0  : https://static.rust-lang.org/dist/rustc-1.79.0-src.tar.gz
 Source1  : https://static.rust-lang.org/dist/rustc-1.79.0-src.tar.gz.asc
@@ -28,14 +28,27 @@ Requires: gcc-dev
 Requires: libc6-dev
 Requires: rustc-extras-lib = %{version}-%{release}
 BuildRequires : cmake
+BuildRequires : gcc-dev32
+BuildRequires : glibc-dev32
 BuildRequires : gnupg
+BuildRequires : libedit-dev
+BuildRequires : libffi-dev
+BuildRequires : libtirpc-dev
 BuildRequires : libxml2-dev
+BuildRequires : libxml2-dev32
 BuildRequires : llvm
 BuildRequires : llvm-staticdev
+BuildRequires : llvm-staticdev32
+BuildRequires : ncurses-dev
+BuildRequires : ncurses-dev32
 BuildRequires : ninja
 BuildRequires : pkgconfig(openssl)
+BuildRequires : python3-dev
 BuildRequires : rustc
 BuildRequires : zlib-dev
+BuildRequires : zlib-dev32
+BuildRequires : zstd-dev
+BuildRequires : zstd-dev32
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -126,9 +139,6 @@ cd %{_builddir}/rustc-1.79.0-src
 %patch -P 2 -p1
 %patch -P 3 -p1
 %patch -P 4 -p1
-pushd ..
-cp -a rustc-1.79.0-src buildavx2
-popd
 
 %build
 ## build_prepend content
@@ -143,6 +153,7 @@ link-shared = true
 [build]
 target = [
 "x86_64-unknown-linux-gnu",
+"i686-unknown-linux-gnu",
 ]
 cargo = "/usr/bin/cargo"
 rustc = "/usr/bin/rustc"
@@ -177,13 +188,19 @@ cxx = "/usr/bin/g++"
 ar = "/usr/bin/gcc-ar"
 ranlib = "/usr/bin/gcc-ranlib"
 llvm-config = "/usr/bin/llvm-config"
+
+[target.i686-unknown-linux-gnu]
+cc = "/usr/bin/gcc"
+cxx = "/usr/bin/g++"
+ar = "/usr/bin/gcc-ar"
+ranlib = "/usr/bin/gcc-ranlib"
 END
 ## build_prepend end
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1718297373
+export SOURCE_DATE_EPOCH=1718664174
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -201,63 +218,6 @@ LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
 export GOAMD64=v2
 make  %{?_smp_mflags}
 
-pushd ../buildavx2
-## build_prepend content
-# Remove .git as the build system will try
-# and sync external submodules otherwise
-rm -fr .git
-cat > config.toml <<END
-change-id = 118703
-profile = "user"
-[llvm]
-link-shared = true
-[build]
-target = [
-"x86_64-unknown-linux-gnu",
-]
-cargo = "/usr/bin/cargo"
-rustc = "/usr/bin/rustc"
-rustfmt = "/usr/bin/rustfmt"
-locked-deps = true
-vendor = true
-tools = ["cargo", "clippy", "rustdoc", "rustfmt", "rust-demangler"]
-sanitizers = true
-profiler = true
-docs = false
-[install]
-prefix = "/usr"
-[rust]
-debuginfo-level-std = 2
-channel = "stable"
-description = "Clear Linux %{version}-%{release}"
-rpath = false
-backtrace-on-ice = true
-remap-debuginfo = false
-jemalloc = true
-# https://github.com/rust-lang/rust/issues/54872
-codegen-units-std = 1
-# codegen-tests depend on LLVM utils (FileCheck) we don't provide
-codegen-tests = false
-
-[dist]
-compression-formats = ["gz"]
-
-[target.x86_64-unknown-linux-gnu]
-cc = "/usr/bin/gcc"
-cxx = "/usr/bin/g++"
-ar = "/usr/bin/gcc-ar"
-ranlib = "/usr/bin/gcc-ranlib"
-llvm-config = "/usr/bin/llvm-config"
-END
-## build_prepend end
-GOAMD64=v3
-CFLAGS="$CLEAR_INTERMEDIATE_CFLAGS -march=x86-64-v3 -Wl,-z,x86-64-v3 "
-CXXFLAGS="$CLEAR_INTERMEDIATE_CXXFLAGS -march=x86-64-v3 -Wl,-z,x86-64-v3 "
-FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS -march=x86-64-v3 -Wl,-z,x86-64-v3 "
-FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS -march=x86-64-v3 "
-LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS -march=x86-64-v3 "
-make  %{?_smp_mflags}
-popd
 
 %install
 export GCC_IGNORE_WERROR=1
@@ -274,11 +234,15 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1718297373
+export SOURCE_DATE_EPOCH=1718664174
 rm -rf %{buildroot}
 ## install_prepend content
 export RUST_BACKTRACE=1
 export RUST_COMPILER_RT_ROOT=%{builddir}/compiler-rt
+# x.py handles the m32/64 flags so remove ours to avoid conflicts
+# as we aren't doing a special 32bit only build like normal
+export CFLAGS="`echo "$CFLAGS" | sed s/-m64//`"
+export CXXFLAGS="$CFLAGS"
 ## install_prepend end
 mkdir -p %{buildroot}/usr/share/package-licenses/rustc
 cp %{_builddir}/rustc-%{version}-src/COPYRIGHT %{buildroot}/usr/share/package-licenses/rustc/287b44e7f4d3ad03159960a9ff61dc6705c261f2 || :
@@ -685,6 +649,7 @@ cp %{_builddir}/rustc-%{version}-src/vendor/drop_bomb-0.1.5/LICENSE-MIT %{buildr
 cp %{_builddir}/rustc-%{version}-src/vendor/dunce-1.0.4/LICENSE %{buildroot}/usr/share/package-licenses/rustc/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/ecdsa-0.16.9/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/0d9f5b2ee0b9f629b3b8a8969d90f2cf654e03a8 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/ecdsa-0.16.9/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/6376baf29519261ce80f0994e4803a5339619fa5 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/ed25519-compact-2.1.1/LICENSE %{buildroot}/usr/share/package-licenses/rustc/3e61fedcd543b7fdaba653d358f0e1718689ced6 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/either-1.10.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/either-1.10.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/3a86cfdfa553511b381388859c9e94ce9e1f916b || :
 cp %{_builddir}/rustc-%{version}-src/vendor/elasticlunr-rs-3.0.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/b95542c0be3bd915a1e7d8df80711fce5cd0795b || :
@@ -752,6 +717,8 @@ cp %{_builddir}/rustc-%{version}-src/vendor/fluent-bundle-0.15.2/LICENSE-APACHE 
 cp %{_builddir}/rustc-%{version}-src/vendor/fluent-bundle-0.15.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/fdfbda78ad0b863317a64dddfe6491935fc18ffc || :
 cp %{_builddir}/rustc-%{version}-src/vendor/fluent-syntax-0.11.0/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/e94c089c69088048bc3ccbe644f22f2cbe46cad4 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/fluent-syntax-0.11.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/fdfbda78ad0b863317a64dddfe6491935fc18ffc || :
+cp %{_builddir}/rustc-%{version}-src/vendor/fm-0.2.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/a2585e27fbd2030976b10e3fbab27cda93e204f8 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/fm-0.2.2/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/21eff670a8244f5471d3091bdc7997bdd3149096 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/fnv-1.0.7/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/fnv-1.0.7/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/50121d8b8c9f6483fe17ea679f28f85fe59b2a5a || :
 cp %{_builddir}/rustc-%{version}-src/vendor/foreign-types-0.3.2/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/669a1e53b9dd9df3474300d3d959bb85bad75945 || :
@@ -1093,6 +1060,7 @@ cp %{_builddir}/rustc-%{version}-src/vendor/log-0.4.20/LICENSE-MIT %{buildroot}/
 cp %{_builddir}/rustc-%{version}-src/vendor/log-0.4.21/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/log-0.4.21/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9f3c36d2b7d381d9cf382a00166f3fbd06783636 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/lsp-types-0.95.0/LICENSE %{buildroot}/usr/share/package-licenses/rustc/cc3fd9cad0dcee8353f63339c9f0423f0c786098 || :
+cp %{_builddir}/rustc-%{version}-src/vendor/lz4_flex-0.11.2/LICENSE %{buildroot}/usr/share/package-licenses/rustc/d24800809a241b15a86941e019728b483eee43d2 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/lzma-sys-0.1.20/LICENSE-APACHE %{buildroot}/usr/share/package-licenses/rustc/5798832c31663cedc1618d18544d445da0295229 || :
 cp %{_builddir}/rustc-%{version}-src/vendor/lzma-sys-0.1.20/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/9447f5c315f76e2fd05b1ef9107dee6f700337ef || :
 cp %{_builddir}/rustc-%{version}-src/vendor/lzma-sys-0.1.20/xz-5.2/COPYING %{buildroot}/usr/share/package-licenses/rustc/66933e63e70616b43f1dc60340491f8e050eedfd || :
@@ -1875,10 +1843,6 @@ cp %{_builddir}/rustc-%{version}-src/vendor/zeroize-1.7.0/LICENSE-APACHE %{build
 cp %{_builddir}/rustc-%{version}-src/vendor/zeroize-1.7.0/LICENSE-MIT %{buildroot}/usr/share/package-licenses/rustc/f24fdeaeee4c59532e32b7c6517d34c8927526fe || :
 cp %{_builddir}/rustc-%{version}-src/vendor/zip-0.6.6/LICENSE %{buildroot}/usr/share/package-licenses/rustc/42631684b818350022ee962eef0a9592b159d838 || :
 export GOAMD64=v2
-GOAMD64=v3
-pushd ../buildavx2/
-%make_install_v3
-popd
 GOAMD64=v2
 %make_install
 ## Remove excluded files
@@ -1887,19 +1851,17 @@ rm -f %{buildroot}*/usr/lib/rustlib/manifest-cargo
 rm -f %{buildroot}*/usr/lib/rustlib/manifest-clippy-preview
 rm -f %{buildroot}*/usr/lib/rustlib/manifest-rust-analysis-x86_64-unknown-linux-gnu
 rm -f %{buildroot}*/usr/lib/rustlib/manifest-rust-demangler-preview
+rm -f %{buildroot}*/usr/lib/rustlib/manifest-rust-std-i686-unknown-linux-gnu
 rm -f %{buildroot}*/usr/lib/rustlib/manifest-rust-std-x86_64-unknown-linux-gnu
 rm -f %{buildroot}*/usr/lib/rustlib/manifest-rustfmt-preview
 rm -f %{buildroot}*/usr/lib/rustlib/manifest-rustc
 rm -f %{buildroot}*/usr/src/etc/bash_completion.d/cargo
 ## install_append content
 mkdir -p %{buildroot}/usr/lib64/
-mkdir -p %{buildroot}-v3/usr/lib64/
 mv %{buildroot}/usr/lib/*.so %{buildroot}/usr/lib64/
-mv %{buildroot}-v3/usr/lib/*.so %{buildroot}-v3/usr/lib64/
+rm -f %{buildroot}/usr/lib/rustlib/i686-unknown-linux-gnu/lib/*.so
 rm -f %{buildroot}/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
-rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 ## install_append end
-/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -1911,19 +1873,38 @@ rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 /usr/lib/rustlib/etc/lldb_lookup.py
 /usr/lib/rustlib/etc/lldb_providers.py
 /usr/lib/rustlib/etc/rust_types.py
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libaddr2line-a8ca6a754b516a98.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libadler-fb4529e6e652e15b.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/liballoc-a04eda1af7cf8b8d.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libcfg_if-a809686a5f47265b.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libcompiler_builtins-3f544ed8dc726d23.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libcore-d3347fef0dc89b8f.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libgetopts-5b37a78d3db414d1.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libgimli-55cc12f15191c83f.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libhashbrown-db97b6941df264a0.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/liblibc-084ddae5e2d648a5.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libmemchr-ef87fa34cb46bd26.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libminiz_oxide-de288df3a0e6e16d.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libobject-4ed744cb4428e312.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libpanic_abort-051b0eb412b19ee7.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libpanic_unwind-ea634b802882b74d.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libproc_macro-a6ba487c4345ce48.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libprofiler_builtins-0acb65cc7a3c677f.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/librustc_demangle-6df7b9b2c6ca9ad0.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/librustc_std_workspace_alloc-038244b0e27a05da.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/librustc_std_workspace_core-d28307a684a35595.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/librustc_std_workspace_std-4a03a1eeba0778a7.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libstd-8671dd72d1991a8c.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libstd_detect-982f363db93db29f.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libsysroot-3f9c6d16c00b28ac.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libtest-1ad2bceab925e008.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libunicode_width-2e272e239d1da733.rlib
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libunwind-d202eecaae2b527d.rlib
 /usr/lib/rustlib/rust-installer-version
 /usr/lib/rustlib/uninstall.sh
 
 %files bin
 %defattr(-,root,root,-)
-/V3/usr/bin/cargo
-/V3/usr/bin/cargo-clippy
-/V3/usr/bin/cargo-fmt
-/V3/usr/bin/clippy-driver
-/V3/usr/bin/rust-demangler
-/V3/usr/bin/rustc
-/V3/usr/bin/rustdoc
-/V3/usr/bin/rustfmt
 /usr/bin/cargo
 /usr/bin/cargo-clippy
 /usr/bin/cargo-fmt
@@ -1959,8 +1940,6 @@ rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 
 %files extras-lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/librustc_driver-*.so
-/V3/usr/lib64/libstd-*.so
 /usr/lib64/librustc_driver-*.so
 /usr/lib64/libstd-*.so
 
@@ -2058,6 +2037,7 @@ rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 /usr/share/package-licenses/rustc/3c2cc74b6c4f504a5106f85ad6ff1a5b2e46b18b
 /usr/share/package-licenses/rustc/3c8e7847ca19c2bb00f4100c725810c04a1b56d6
 /usr/share/package-licenses/rustc/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90
+/usr/share/package-licenses/rustc/3e61fedcd543b7fdaba653d358f0e1718689ced6
 /usr/share/package-licenses/rustc/3ede8a2ceb97cd197183b1a9d7958b57cea01e14
 /usr/share/package-licenses/rustc/405d1b5b9e3fa3a408b7e4270c729b4f5cc849ab
 /usr/share/package-licenses/rustc/40fbda07e6109b5f0831929b3c4dcc517ca421db
@@ -2299,6 +2279,7 @@ rm -f %{buildroot}-v3/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 /usr/share/package-licenses/rustc/ceb1d1fb89e2305664554a8de9003d2283e50a8e
 /usr/share/package-licenses/rustc/cf762fa3609793d5639ba9e1cbd254db276f50d3
 /usr/share/package-licenses/rustc/cfcb552ef0afbe7ccb4128891c0de00685988a4b
+/usr/share/package-licenses/rustc/d24800809a241b15a86941e019728b483eee43d2
 /usr/share/package-licenses/rustc/d2cf9694021d7797696471bd8410ee4b83b0a93b
 /usr/share/package-licenses/rustc/d3b6f18aede3c1be4b4b2f658dedefbf40c70713
 /usr/share/package-licenses/rustc/d3f4001d9de83a122956c9195d73e2507bf6c533
