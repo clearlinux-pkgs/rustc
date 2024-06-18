@@ -9,7 +9,7 @@
 #
 Name     : rustc
 Version  : 1.79.0
-Release  : 128
+Release  : 129
 URL      : https://static.rust-lang.org/dist/rustc-1.79.0-src.tar.gz
 Source0  : https://static.rust-lang.org/dist/rustc-1.79.0-src.tar.gz
 Source1  : https://static.rust-lang.org/dist/rustc-1.79.0-src.tar.gz.asc
@@ -99,6 +99,14 @@ Group: Default
 
 %description extras-lib
 extras-lib components for the rustc package.
+
+
+%package extras-lib32
+Summary: extras-lib32 components for the rustc package.
+Group: Default
+
+%description extras-lib32
+extras-lib32 components for the rustc package.
 
 
 %package lib
@@ -200,7 +208,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1718664174
+export SOURCE_DATE_EPOCH=1718686707
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -234,7 +242,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1718664174
+export SOURCE_DATE_EPOCH=1718686707
 rm -rf %{buildroot}
 ## install_prepend content
 export RUST_BACKTRACE=1
@@ -1873,33 +1881,6 @@ rm -f %{buildroot}/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 /usr/lib/rustlib/etc/lldb_lookup.py
 /usr/lib/rustlib/etc/lldb_providers.py
 /usr/lib/rustlib/etc/rust_types.py
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libaddr2line-a8ca6a754b516a98.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libadler-fb4529e6e652e15b.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/liballoc-a04eda1af7cf8b8d.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libcfg_if-a809686a5f47265b.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libcompiler_builtins-3f544ed8dc726d23.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libcore-d3347fef0dc89b8f.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libgetopts-5b37a78d3db414d1.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libgimli-55cc12f15191c83f.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libhashbrown-db97b6941df264a0.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/liblibc-084ddae5e2d648a5.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libmemchr-ef87fa34cb46bd26.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libminiz_oxide-de288df3a0e6e16d.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libobject-4ed744cb4428e312.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libpanic_abort-051b0eb412b19ee7.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libpanic_unwind-ea634b802882b74d.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libproc_macro-a6ba487c4345ce48.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libprofiler_builtins-0acb65cc7a3c677f.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/librustc_demangle-6df7b9b2c6ca9ad0.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/librustc_std_workspace_alloc-038244b0e27a05da.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/librustc_std_workspace_core-d28307a684a35595.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/librustc_std_workspace_std-4a03a1eeba0778a7.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libstd-8671dd72d1991a8c.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libstd_detect-982f363db93db29f.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libsysroot-3f9c6d16c00b28ac.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libtest-1ad2bceab925e008.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libunicode_width-2e272e239d1da733.rlib
-/usr/lib/rustlib/i686-unknown-linux-gnu/lib/libunwind-d202eecaae2b527d.rlib
 /usr/lib/rustlib/rust-installer-version
 /usr/lib/rustlib/uninstall.sh
 
@@ -1942,6 +1923,10 @@ rm -f %{buildroot}/usr/lib/rustlib/x86_64-unknown-linux-gnu/lib/*.so
 %defattr(-,root,root,-)
 /usr/lib64/librustc_driver-*.so
 /usr/lib64/libstd-*.so
+
+%files extras-lib32
+%defattr(-,root,root,-)
+/usr/lib/rustlib/i686-unknown-linux-gnu/lib/*.rlib
 
 %files lib
 %defattr(-,root,root,-)
