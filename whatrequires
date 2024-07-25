@@ -1,11 +1,17 @@
 # This file contains recursive sources that require this package
+aardvark-dns
+bcachefs-tools
 cbindgen
 clamav
+fd
 librsvg
 mesa
 mozjs102
 mozjs115
 mozjs91
+netavark
+pdns-recursor
+php-datadog_trace
 pypi-bcrypt
 pypi-cryptography
 pypi-maturin
@@ -14,4 +20,5 @@ pypi-tokenizers
 ripgrep
 rust-bindgen
 rustc
+snapshot
 suricata
