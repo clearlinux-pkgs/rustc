@@ -2,8 +2,8 @@
 # and sync external submodules otherwise
 rm -fr .git
 cat > config.toml <<END
-change-id = 118703
-profile = "user"
+change-id = 127866
+profile = "dist"
 [llvm]
 link-shared = true
 [build]
@@ -23,15 +23,19 @@ docs = false
 [install]
 prefix = "/usr"
 [rust]
+codegen-units-std = 1
+debuginfo-level = 1
 debuginfo-level-std = 2
 channel = "stable"
 description = "Clear Linux %{version}-%{release}"
 rpath = false
+frame-pointers = true
+lld = false
+use-lld = "external"
+deny-warnings = false
 backtrace-on-ice = true
 remap-debuginfo = false
 jemalloc = true
-# https://github.com/rust-lang/rust/issues/54872
-codegen-units-std = 1
 # codegen-tests depend on LLVM utils (FileCheck) we don't provide
 codegen-tests = false
 
