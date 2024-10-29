@@ -9,7 +9,7 @@
 #
 Name     : rustc
 Version  : 1.81.0
-Release  : 134
+Release  : 135
 URL      : https://static.rust-lang.org/dist/rustc-1.81.0-src.tar.gz
 Source0  : https://static.rust-lang.org/dist/rustc-1.81.0-src.tar.gz
 Source1  : https://static.rust-lang.org/dist/rustc-1.81.0-src.tar.gz.asc
