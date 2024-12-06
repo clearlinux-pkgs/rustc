@@ -22,6 +22,7 @@ pypi-tokenizers
 ripgrep
 rust-bindgen
 rustc
+scx
 snapshot
 suricata
 thin-provisioning-tools
