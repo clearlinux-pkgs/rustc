@@ -1,0 +1,54 @@
+From cde58dd5f781c3998d2421132854d2a833937e85 Mon Sep 17 00:00:00 2001
+From: onur-ozkan <work@onurozkan.dev>
+Date: Thu, 16 Jan 2025 17:34:31 +0300
+Subject: [PATCH] resolve symlinks of LLVM tool binaries before copying them
+
+There is a chance that these tools are being installed from an external LLVM
+and we have no control over them. If any of these tools use symlinks, they will
+fail during tarball distribution. This change makes copying process to resolve
+symlinks just before placing them into the destination path.
+
+Signed-off-by: onur-ozkan <work@onurozkan.dev>
+---
+ src/bootstrap/src/core/build_steps/compile.rs | 8 +++++++-
+ src/bootstrap/src/lib.rs                      | 8 ++++++++
+ 2 files changed, 15 insertions(+), 1 deletion(-)
+
+diff --git a/src/bootstrap/src/core/build_steps/compile.rs b/src/bootstrap/src/core/build_steps/compile.rs
+index 4c4df922b3799..fd9bf47234c63 100644
+--- a/src/bootstrap/src/core/build_steps/compile.rs
++++ b/src/bootstrap/src/core/build_steps/compile.rs
+@@ -1777,7 +1777,13 @@ impl Step for Assemble {
+                     // When using `download-ci-llvm`, some of the tools
+                     // may not exist, so skip trying to copy them.
+                     if src_path.exists() {
+-                        builder.copy_link(&src_path, &libdir_bin.join(&tool_exe));
++                        // There is a chance that these tools are being installed from an external LLVM.
++                        // Use `Builder::resolve_symlink_and_copy` instead of `Builder::copy_link` to ensure
++                        // we are copying the original file not the symlinked path, which causes issues for
++                        // tarball distribution.
++                        //
++                        // See https://github.com/rust-lang/rust/issues/135554.
++                        builder.resolve_symlink_and_copy(&src_path, &libdir_bin.join(&tool_exe));
+                     }
+                 }
+             }
+diff --git a/src/bootstrap/src/lib.rs b/src/bootstrap/src/lib.rs
+index ebe2c332258d7..482e23cd04c31 100644
+--- a/src/bootstrap/src/lib.rs
++++ b/src/bootstrap/src/lib.rs
+@@ -1633,6 +1633,14 @@ Executed at: {executed_at}"#,
+         paths
+     }
+ 
++    /// Copies a file from `src` to `dst`.
++    ///
++    /// If `src` is a symlink, `src` will be resolved to the actual path
++    /// and copied to `dst` instead of the symlink itself.
++    pub fn resolve_symlink_and_copy(&self, src: &Path, dst: &Path) {
++        self.copy_link_internal(src, dst, true);
++    }
++
+     /// Links a file from `src` to `dst`.
+     /// Attempts to use hard links if possible, falling back to copying.
+     /// You can neither rely on this being a copy nor it being a link,

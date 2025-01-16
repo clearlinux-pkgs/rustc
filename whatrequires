@@ -1,6 +1,7 @@
 # This file contains recursive sources that require this package
 aardvark-dns
 bcachefs-tools
+bottom
 cbindgen
 clamav
 cyme
@@ -17,7 +18,6 @@ php-datadog_trace
 pypi-bcrypt
 pypi-cryptography
 pypi-maturin
-pypi-rpds_py
 pypi-tokenizers
 ripgrep
 rust-bindgen
@@ -25,4 +25,5 @@ rustc
 scx
 snapshot
 suricata
+tbtools
 thin-provisioning-tools
