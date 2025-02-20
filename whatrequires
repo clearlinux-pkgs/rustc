@@ -1,11 +1,13 @@
 # This file contains recursive sources that require this package
 aardvark-dns
 bcachefs-tools
+binutils
 bottom
 cbindgen
 clamav
 cyme
 fd
+gdb
 librsvg
 mesa
 mozjs102

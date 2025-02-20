@@ -2,4 +2,3 @@
 0002-Reduce-mixing-and-matching-sys-and-linux.patch
 0003-compiler-rt-fix-linux-header.patch
 backport-mount-h.patch
-backport-fix-symlink-resolution.patch
