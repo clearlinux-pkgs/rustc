@@ -10,11 +10,13 @@ fd
 gdb
 librsvg
 mesa
+mesa-clc
 mozjs102
 mozjs115
 mozjs128
 mozjs91
 netavark
+nushell
 pdns-recursor
 php-datadog_trace
 pypi-bcrypt
