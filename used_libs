@@ -4,7 +4,7 @@ libc.so.6
 libcrypto.so.3
 libgcc_s.so.1
 libm.so.6
-librustc_driver-7b5ef7366c040ae4.so
+librustc_driver-ea3389fe1ca35d91.so
 libssl.so.3
 libstdc++.so.6
 libz.so.1
